@@ -48,7 +48,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Artist, { foreignKey: 'userId' })
+    User.hasMany(models.Album, { foreignKey: 'userId' })
+    User.hasMany(models.Song, { foreignKey: 'userId' })
   };
   User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
