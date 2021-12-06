@@ -27,9 +27,11 @@ function Navigation({ isLoaded }) {
         <>
             <ul className='navbar'>
                 <div className='links'>
-                    <i class="fab fa-soundcloud fa-5x"></i>
-                    <p className='soundfi'>SoundFi</p>
-                    <li classname='navbuttonsright'>
+                    <div className='logoandtitle'>
+                        <i className="fab fa-soundcloud fa-5x"></i>
+                        <p className='soundfi'>SoundFi</p>
+                    </div>
+                    <li className='navbuttonsright'>
                         <NavLink className='home-signin' exact to="/">Home</NavLink>
                         {isLoaded && sessionLinks}
                     </li>
