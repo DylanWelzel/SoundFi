@@ -12,6 +12,10 @@ function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const demoLogin = (e) => {
+        e.preventDefault();
+        return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,6 +77,7 @@ function SignupForm() {
                 />
             </label>
             <button className='signupbutton' type="submit">Sign Up</button>
+            <button className='loginbutton' onClick={demoLogin}>Demo User</button>
         </form>
     );
 }

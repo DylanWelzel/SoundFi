@@ -39,9 +39,12 @@
 }
 
 .signupform button {
+    width: 100%;
+    margin-bottom: 10px;
+
     height: 30px;
     line-height: 24px;
-    margin: 0 0 0 6px;
+    margin-left: 6px;
     padding: 2px 16px;
     transition: opacity .2s linear;
     background-color: #f50;
