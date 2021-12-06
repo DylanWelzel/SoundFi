@@ -4,16 +4,14 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignUpForm.css';
 
-function SignupFormPage() {
+function SignupForm() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,13 +27,15 @@ function SignupFormPage() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='signupform' onSubmit={handleSubmit}>
+            <h1 className='signuptext'>Create An Account</h1>
             <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
             </ul>
             <label>
                 Email
                 <input
+                    className='userinput'
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -45,6 +45,7 @@ function SignupFormPage() {
             <label>
                 Username
                 <input
+                    className='userinput'
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -54,6 +55,7 @@ function SignupFormPage() {
             <label>
                 Password
                 <input
+                    className='userinput'
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -63,15 +65,16 @@ function SignupFormPage() {
             <label>
                 Confirm Password
                 <input
+                    className='userinput'
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
             </label>
-            <button type="submit">Sign Up</button>
+            <button className='signupbutton' type="submit">Sign Up</button>
         </form>
     );
 }
 
-export default SignupFormPage;
+export default SignupForm;
