@@ -160,3 +160,36 @@ button {
 	cursor: pointer;
 	outline: inherit;
 }
+
+.headers {
+    line-height: 30px;
+    text-align: center;
+    position: fixed;
+    top: 15%;
+    text-align: center;
+    max-width: 1260px;
+}
+
+.discovertext {
+    display: inline-block;
+
+    margin-bottom: 8px;
+    font-size: 36px;
+    font-weight: 100;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    text-shadow: 0 0 3px rgb(5 5 5 / 50%);
+    text-shadow: 0 0 3px rgb(5 5 5 / 50%);
+    color: #fff;
+  }
+
+.discoversmalltext {
+      display: inline-block;
+
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    text-shadow: 0 0 3px rgb(5 5 5 / 50%);
+    text-shadow: 0 0 3px rgb(5 5 5 / 50%);
+    color: #fff;
+}

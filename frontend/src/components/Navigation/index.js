@@ -38,6 +38,11 @@ function Navigation({ isLoaded }) {
                     </li>
                 </div>
             </ul>
+            <div className='headers'>
+                <h1 className='discovertext'>Discover More With SoundFi+</h1>
+                <h2 className='discoversmalltext'>  SoundFi+ lets you listen offline, ad-free, with over 150 million tracks — and growing.</h2>
+            </div>
+
         </>
     );
 }
