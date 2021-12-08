@@ -55,9 +55,9 @@ const requireAuth = [
     function (req, _res, next) {
         if (req.user) return next();
 
-        const err = new Error('Unauthorized');
-        err.title = 'Unauthorized';
-        err.errors = ['Unauthorized'];
+        const err = new Error('Please Sign-Up or Log-In to add a song!');
+        err.title = 'Please Sign-Up or Log-In to add a song!';
+        err.errors = ['Please Sign-Up or Log-In to add a song!'];
         err.status = 401;
         return next(err);
     }
