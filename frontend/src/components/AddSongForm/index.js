@@ -3,46 +3,39 @@ import { useDispatch } from "react-redux";
 
 import { postSong } from "../../store/song";
 
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+
 const SongForm = () => {
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
-    const [albumName, setAlbumName] = useState("");
-    const [artistName, setArtistName] = useState("");
-    const [userId, setUserId] = useState("");
-    const [albumId, setAlbumId] = useState("");
-    const [artistId, setArtistId] = useState("");
 
+    const history = useHistory()
 
     const reset = () => {
         setSongName("");
         setSongLink("");
-        setAlbumName('');
-        setArtistName('')
+        // setAlbumName('');
+        // setArtistName('')
     };
+    const user = useSelector((state) => state.session.user);
+    const userId = user?.id
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newSong = {
             songName,
             songLink,
-            albumId,
-            artistId,
             userId
-        };
-        const newAlbum = {
-            albumName,
-            artistId,
-            userId,
-        };
-        const newArtist = {
-            artistName,
-            userId,
+            // albumId,
+            // artistId,
+            // userId
         };
         dispatch(postSong(newSong));
-
         reset();
+        return history.push('/songlist')
     };
 
     return (
@@ -62,20 +55,6 @@ const SongForm = () => {
                     value={songLink}
                     placeholder="Song Link"
                     name="Audio File"
-                />
-                <input
-                    type="text"
-                    onChange={(e) => setAlbumName(e.target.value)}
-                    value={albumName}
-                    placeholder="Album Name"
-                    name="Song Link"
-                />
-                <input
-                    type="text"
-                    onChange={(e) => setArtistName(e.target.value)}
-                    value={artistName}
-                    placeholder="Artist Name"
-                    name="Song Link"
                 />
                 <button type="submit">Submit</button>
             </form>

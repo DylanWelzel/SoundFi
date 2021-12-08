@@ -17,12 +17,12 @@ module.exports = {
         allowNull: false,
       },
       albumId: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Albums" },
       },
       artistId: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Artists" },
       },

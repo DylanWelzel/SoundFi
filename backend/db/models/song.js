@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     albumId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
     artistId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
     userId: {
       type: DataTypes.INTEGER,

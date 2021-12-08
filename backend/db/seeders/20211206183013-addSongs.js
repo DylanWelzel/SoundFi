@@ -12,8 +12,8 @@ module.exports = {
       {
         songName: 'Floating',
         songLink: 'floating songlink',
-        albumId: 1,
-        artistId: 1,
+        // albumId: 1,
+        // artistId: 1,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -21,8 +21,8 @@ module.exports = {
       {
         songName: 'Evenings',
         songLink: 'evenings songlink',
-        albumId: 2,
-        artistId: 2,
+        // albumId: 2,
+        // artistId: 2,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -30,8 +30,8 @@ module.exports = {
       {
         songName: 'Birds Eye View',
         songLink: 'birdseyeview songlink',
-        albumId: 3,
-        artistId: 3,
+        // albumId: 3,
+        // artistId: 3,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -39,8 +39,8 @@ module.exports = {
       {
         songName: 'Lift Up',
         songLink: 'liftup songlink',
-        albumId: 4,
-        artistId: 4,
+        // albumId: 4,
+        // artistId: 4,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -48,8 +48,8 @@ module.exports = {
       {
         songName: 'Hope',
         songLink: 'hope songlink',
-        albumId: 5,
-        artistId: 5,
+        // albumId: 5,
+        // artistId: 5,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -57,8 +57,8 @@ module.exports = {
       {
         songName: 'Wishes',
         songLink: 'wishes songlink',
-        albumId: 6,
-        artistId: 6,
+        // albumId: 6,
+        // artistId: 6,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -66,8 +66,8 @@ module.exports = {
       {
         songName: 'Perspectives',
         songLink: 'perspectives songlink',
-        albumId: 7,
-        artistId: 7,
+        // albumId: 7,
+        // artistId: 7,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -75,8 +75,8 @@ module.exports = {
       {
         songName: 'Sinking Fatigue',
         songLink: 'sinkingfatigue songlink',
-        albumId: 8,
-        artistId: 8,
+        // albumId: 8,
+        // artistId: 8,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
