@@ -2,17 +2,29 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const { Song } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-const { validateCreate } = require('../../utils/songValidations');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
-const songValidations = require('../../utils/songValidations')
 
 router.get('/', asyncHandler(async (req, res) => {
     const songs = await Song.findAll();
     res.json(songs);
 }));
 
-router.post('/:id', requireAuth, songValidations.validateCreate, asyncHandler(async (req, res) => {
+const songValidations = [
+    check('songName')
+        .notEmpty()
+        .withMessage('Song name must not be empty.'),
+    check('songLink')
+        .notEmpty()
+        .withMessage('Song Link must not be empty.'),
+    handleValidationErrors
+]
+
+router.post('/:id', requireAuth, songValidations, asyncHandler(async (req, res) => {
+
     const song = await Song.create(req.body);
+
     return res.json(song);
 }));
 
@@ -25,7 +37,7 @@ router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
 
 }));
 
-router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
+router.put('/:id', requireAuth, songValidations, asyncHandler(async function (req, res) {
     const id = req.params.id
     const originalSong = await Song.findByPk(id)
     if (!originalSong) throw new Error('Cannot find song');

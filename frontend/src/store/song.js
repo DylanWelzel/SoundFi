@@ -58,13 +58,14 @@ const update = (song) => ({
 });
 
 export const updateSong = (song) => async (dispatch) => {
+    console.log(song.id)
     const response = await csrfFetch(`/api/songs/${song.id}`, {
         method: 'put',
         body: JSON.stringify(song)
     });
-
     if (response.ok) {
         const song = await response.json();
+        console.log(song, 'frontend songgg')
         dispatch(update(song));
         return song;
     }

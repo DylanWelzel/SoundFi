@@ -4,15 +4,14 @@ import { useDispatch } from "react-redux";
 import { postSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 
 const SongForm = () => {
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
+    const [errors, setErrors] = useState([]);
 
-    const history = useHistory()
 
     const reset = () => {
         setSongName("");
@@ -30,14 +29,21 @@ const SongForm = () => {
             songLink,
             userId
         };
-        const song = await dispatch(postSong(newSong));
+        const song = await dispatch(postSong(newSong))
+            .catch(async (res) => {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
         reset();
-        if (song) return history.push(`/songlist`)
     };
+    console.log(errors)
 
     return (
         <div className="inputBox">
             <h1>Add A Song</h1>
+            <ul>
+                {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
+            </ul>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -47,7 +53,7 @@ const SongForm = () => {
                     name="Song Name"
                 />
                 <input
-                    type="file"
+                    type="text"
                     onChange={(e) => setSongLink(e.target.value)}
                     value={songLink}
                     placeholder="Song Link"

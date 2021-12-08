@@ -21,7 +21,7 @@ function App() {
       <Switch>
         <Route exact path="/addsong" component={AddSongForm} />
         <Route exact path="/songlist" component={SongList} />
-        <Route exact path="/editsong" component={EditSongForm} />
+        <Route path="/editsong/:id" component={EditSongForm} />
       </Switch>
     </>
   );

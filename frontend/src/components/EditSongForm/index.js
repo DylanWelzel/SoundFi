@@ -4,15 +4,15 @@ import { useDispatch } from "react-redux";
 import { updateSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 
-const EditSongForm = () => {
+const EditSongForm = ({ props }) => {
+    console.log(props)
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
+    const [errors, setErrors] = useState([]);
 
-    const history = useHistory()
 
     const reset = () => {
         setSongName("");
@@ -24,20 +24,29 @@ const EditSongForm = () => {
     const userId = user?.id
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         const updatedSongDetails = {
+            id: props,
             songName,
             songLink,
             userId
         };
-        let updatedSong = await dispatch(updateSong(updatedSongDetails));
+        let updatedSong = await dispatch(updateSong(updatedSongDetails))
+            .catch(async (res) => {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
         reset();
-        if (updatedSong) return history.push(`/songlist`)
     };
 
     return (
         <div className="inputBox">
             <h1>Update A Song</h1>
+            <ul>
+                {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
+            </ul>
+
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -47,7 +56,7 @@ const EditSongForm = () => {
                     name="Song Name"
                 />
                 <input
-                    type="file"
+                    type="text"
                     onChange={(e) => setSongLink(e.target.value)}
                     value={songLink}
                     placeholder="Song Link"
