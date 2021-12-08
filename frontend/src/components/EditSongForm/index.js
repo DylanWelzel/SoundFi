@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { postSong } from "../../store/song";
+import { updateSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-const SongForm = () => {
+const EditSongForm = () => {
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
@@ -25,19 +25,19 @@ const SongForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newSong = {
+        const updatedSongDetails = {
             songName,
             songLink,
             userId
         };
-        const song = await dispatch(postSong(newSong));
+        let updatedSong = await dispatch(updateSong(updatedSongDetails));
         reset();
-        if (song) return history.push(`/songlist`)
+        if (updatedSong) return history.push(`/songlist`)
     };
 
     return (
         <div className="inputBox">
-            <h1>Add A Song</h1>
+            <h1>Update A Song</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -59,4 +59,4 @@ const SongForm = () => {
     );
 };
 
-export default SongForm;
+export default EditSongForm;

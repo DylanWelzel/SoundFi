@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 
 import AddSongForm from "./components/AddSongForm"
 import SongList from './components/SongList'
+import EditSongForm from './components/EditSongForm'
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
       <Switch>
         <Route exact path="/addsong" component={AddSongForm} />
         <Route exact path="/songlist" component={SongList} />
+        <Route exact path="/editsong" component={EditSongForm} />
       </Switch>
     </>
   );

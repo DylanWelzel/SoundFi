@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getSongs, removeSong } from '../../store/song';
+import { deleteSong, getSongs } from '../../store/song';
 
 import ReactAudioPlayer from 'react-audio-player';
 
@@ -12,18 +12,11 @@ const SongList = () => {
     const songsObj = useSelector((state) => state.songState.entries);
     const songs = Object.values(songsObj)
 
-    // useEffect(() => {
-    //     dispatch(getSongs());
-    // }, [dispatch, remove]);
-
     const user = useSelector((state) => state.session.user);
     const CurrentUserId = user?.id
 
-    const userSongs = songs.find(song => song.userId === CurrentUserId)
-
-    const remove = async () => {
-        const songId = userSongs?.id
-        dispatch(removeSong(songId));
+    const remove = (e) => {
+        dispatch(deleteSong(e.target.id));
     }
 
     useEffect(() => {
@@ -38,12 +31,12 @@ const SongList = () => {
                 {songs.map(({ id, songName, songLink, userId }) => (
                     <div className='songdetails' key={id}>
                         <p key={id}>songName={songName}</p>
-                        <ReactAudioPlayer
+                        {/* <ReactAudioPlayer
                             src={songLink}
                             autoPlay
                             controls
                             key={songLink}
-                        />
+                        /> */}
                         {userId === CurrentUserId ?
                             <div>
                                 <button id={id} onClick={remove}>remove</button>
@@ -56,3 +49,4 @@ const SongList = () => {
     );
 };
 export default SongList;
+ 

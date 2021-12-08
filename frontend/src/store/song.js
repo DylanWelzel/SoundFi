@@ -1,7 +1,11 @@
 import { csrfFetch } from "./csrf";
+
+
+
 const LOAD_SONGS = 'song/loadSongs';
 const ADD_SONG = 'song/addSongs';
 const REMOVE_SONG = 'song/removeSongs'
+const UPDATE_SONG = 'song/updateSongs'
 
 export const loadSongs = (songs) => ({
     type: LOAD_SONGS,
@@ -11,7 +15,6 @@ export const getSongs = () => async (dispatch) => {
     const response = await fetch('/api/songs')
     const songs = await response.json()
     dispatch(loadSongs(songs))
-    // return articles optional
     return songs
 }
 
@@ -21,8 +24,8 @@ export const addSong = (newSong) => ({
 });
 
 export const postSong = (newSong) => async (dispatch) => {
-    const response = await csrfFetch(`/api/songs`, {
-        method: 'post',
+    const response = await csrfFetch(`/api/songs/${newSong.id}`, {
+        method: 'POST',
         body: JSON.stringify(newSong)
     });
     const song = await response.json();
@@ -33,22 +36,41 @@ export const postSong = (newSong) => async (dispatch) => {
     }
 };
 
-export const removeSong = (songId) => ({
+export const removeSong = (song) => ({
     type: REMOVE_SONG,
-    songId,
+    song,
 });
 
 
-export const deleteSong = (song) => async (dispatch) => {
-    const response = await fetch(`/api/songlist/`, {
-        method: 'delete'
+export const deleteSong = (songId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/songs/${songId}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        const song = await response.json();
+        dispatch(removeSong(song));
+    }
+};
+
+const update = (song) => ({
+    type: UPDATE_SONG,
+    song
+});
+
+export const updateSong = (song) => async (dispatch) => {
+    const response = await csrfFetch(`/api/songs/${song.id}`, {
+        method: 'put',
+        body: JSON.stringify(song)
     });
 
     if (response.ok) {
         const song = await response.json();
-        dispatch(removeSong(song.id));
+        dispatch(update(song));
+        return song;
     }
 };
+
+
 
 
 
@@ -74,12 +96,18 @@ const songReducer = (state = initialState, action) => {
             }
         }
         case REMOVE_SONG: {
-            const newState = { ...state };
-            // console.log(newState, 1)
-            console.log(action)
-            delete newState.entries[action.songId];
-            // console.log(newState, 2)
+            const newState = { ...state, entries: { ...state.entries } };
+            delete newState.entries[action.song.id];
             return newState;
+        }
+        case UPDATE_SONG: {
+            return {
+                ...state,
+                entries: {
+                    ...state.entries,
+                    [action.song.id]: action.song
+                }
+            }
         }
         default:
             return state;

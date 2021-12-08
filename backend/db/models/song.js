@@ -9,14 +9,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    albumId: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-    },
-    artistId: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-    },
+    // albumId: {
+    //   type: DataTypes.INTEGER,
+    //   // allowNull: false,
+    // },
+    // artistId: {
+    //   type: DataTypes.INTEGER,
+    //   // allowNull: false,
+    // },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,8 +24,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Song.associate = function (models) {
     Song.belongsTo(models.User, { foreignKey: 'userId' })
-    Song.belongsTo(models.Album, { foreignKey: 'albumId' })
-    Song.belongsTo(models.Artist, { foreignKey: 'artistId' })
   };
   return Song;
 };
