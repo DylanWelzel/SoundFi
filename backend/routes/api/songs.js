@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const { updateSong } = require('../../../frontend/src/store/song');
 const { Song } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { validateCreate } = require('../../utils/songValidations');
@@ -18,7 +17,6 @@ router.post('/:id', requireAuth, songValidations.validateCreate, asyncHandler(as
 }));
 
 router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
-    console.log(req.params, 'router.delete req.params.id')
     const song = await Song.findByPk(req.params.id)
     if (!song) throw new Error('Cannot find song');
     await Song.destroy({ where: { id: song.id } });
@@ -28,12 +26,20 @@ router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
 }));
 
 router.put('/:id', requireAuth, asyncHandler(async function (req, res) {
-    const song = await Song.findByPk(req.params.id)
-    if (!song) throw new Error('Cannot find song');
-    const updatedSong = await Song.update(req.body)
-    console.log(updateSong, 'updated songggg')
+    const id = req.params.id
+    const originalSong = await Song.findByPk(id)
+    if (!originalSong) throw new Error('Cannot find song');
+    const { songName, songLink, userId } = req.body
+    const updatedSong = await originalSong.update(
+        {
+            id,
+            songName,
+            songLink,
+            userId
+        }
+    )
+    console.log(updatedSong, 'updated songggg')
     return res.json(updatedSong);
-
 }));
 
 
