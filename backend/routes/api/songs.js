@@ -11,6 +11,12 @@ router.get('/', asyncHandler(async (req, res) => {
     res.json(songs);
 }));
 
+router.get('/:id', asyncHandler(async (req, res) => {
+    const songId = req.params.id
+    const song = await Song.findByPk(songId)
+    return res.json(song)
+}));
+
 const songValidations = [
     check('songName')
         .notEmpty()

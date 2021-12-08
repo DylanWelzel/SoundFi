@@ -7,12 +7,12 @@ import ReactAudioPlayer from 'react-audio-player';
 import { useHistory } from 'react-router';
 import SongForm from '../AddSongForm';
 import EditSongForm from '../EditSongForm';
-
+import SpecificSong from '../SpecificSong';
 
 const SongList = () => {
 
     const [addShowForm, setAddShowForm] = useState(false);
-    const [editShowForm, setEditShowForm] = useState(false);
+    // const [editShowForm, setEditShowForm] = useState(false);
 
     const history = useHistory()
     const dispatch = useDispatch();
@@ -32,10 +32,10 @@ const SongList = () => {
         if (addShowForm) setAddShowForm(false)
         if (!addShowForm) setAddShowForm(true)
     }
-    const editFormCheck = (e) => {
-        if (editShowForm) setEditShowForm(false)
-        if (!editShowForm) setEditShowForm(true)
-    }
+    // const editFormCheck = (e) => {
+    //     if (editShowForm) setEditShowForm(false)
+    //     if (!editShowForm) setEditShowForm(true)
+    // }
 
     useEffect(() => {
         dispatch(getSongs());
@@ -53,27 +53,8 @@ const SongList = () => {
             <h1>Song List</h1>
             <ol>
                 {songs.map(({ id, songName, songLink, userId }) => (
-                    <div className='songdetails' key={id}>
-                        <p key={id}>songName={songName}</p>
-                        {/* <ReactAudioPlayer
-                            src={songLink}
-                            autoPlay
-                            controls
-                            key={songLink}
-                        /> */}
-                        {userId === CurrentUserId ?
-                            <>
-                                <div>
-                                    <button id={id} onClick={remove}>remove</button>
-                                </div>
-                                <div>
-                                    <button id={id} onClick={editFormCheck}>edit</button>
-                                    {editShowForm ?
-                                        <EditSongForm props={id} />
-                                        : null}
-                                </div>
-                            </>
-                            : null}
+                    <div>
+                        <SpecificSong id={id} songName={songName} songLink={songLink} userId={userId} />
                     </div>
                 ))}
             </ol>
