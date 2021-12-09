@@ -46,7 +46,7 @@ const SongList = () => {
         <div>
             <div>
                 {/* <button onClick={addFormCheck}>add a song</button> */}
-                {<SongForm setAddShowForm={setAddShowForm} />}
+                {CurrentUserId && <SongForm setAddShowForm={setAddShowForm} />}
             </div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
             </h1>

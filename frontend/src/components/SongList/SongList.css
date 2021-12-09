@@ -76,3 +76,11 @@
     max-width: 225px;
     max-height: 225px;
 }
+
+.audioplayer {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 280px;
+
+}

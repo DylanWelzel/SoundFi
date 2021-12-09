@@ -34,7 +34,6 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
             <ReactAudioPlayer
                 className='audioplayer'
                 src={songLink}
-                autoPlay
                 controls
                 key={songLink}
             />

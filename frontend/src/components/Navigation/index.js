@@ -40,7 +40,7 @@ function Navigation({ isLoaded }) {
             </ul>
             <div className='headers'>
                 <h1 className='discovertext'>Discover More With SoundFi+</h1>
-                <h2 className='discoversmalltext'>  SoundFi+ lets you listen offline, ad-free, with over 150 million tracks — and growing.</h2>
+                <h2 className='discoversmalltext'>  SoundFi+ lets you upload your own songs, ad-free, with other users.</h2>
             </div>
 
         </>

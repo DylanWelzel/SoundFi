@@ -63,6 +63,7 @@ const SongForm = ({ setShowModal }) => {
             const song = await dispatch(postSong(newSong))
                 .catch(async (res) => {
                     const data = await res.json()
+                    console.log(data)
                     if (data && data.errors) setErrors(data.errors)
                 })
             // setAddShowForm(false)
@@ -104,8 +105,7 @@ const SongForm = ({ setShowModal }) => {
                     placeholder="Song Link"
                     name="Audio File"
                 />
-                {loading && <p className='spinner'></p>
-                }
+                {loading && <p className='spinner'></p>}
                 <button type="submit">Submit</button>
 
 
