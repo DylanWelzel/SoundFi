@@ -84,3 +84,27 @@
     width: 280px;
 
 }
+
+.addsongmessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 100;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    /* text-shadow: 0 0 3px rgb(5 5 5 / 50%);
+    text-shadow: 0 0 3px rgb(5 5 5 / 50%); */
+    color: #333;
+
+}
+
+.songname {
+    font-size: 18px;
+    color: rgb(33, 33, 33);
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 15px;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+
+}
