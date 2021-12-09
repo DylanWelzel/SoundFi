@@ -5,6 +5,9 @@ import { updateSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
 
+import Axios from 'axios'
+
+
 const EditSongForm = ({ props }) => {
     console.log(props)
     const dispatch = useDispatch();
@@ -12,6 +15,9 @@ const EditSongForm = ({ props }) => {
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
     const [errors, setErrors] = useState([]);
+
+
+    const [songSelected, setSongSelected] = useState("")
 
 
     const reset = () => {
@@ -23,23 +29,33 @@ const EditSongForm = ({ props }) => {
     const user = useSelector((state) => state.session.user);
     const userId = user?.id
 
+    let url;
+
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-        const updatedSongDetails = {
-            id: props,
-            songName,
-            songLink,
-            userId
-        };
-        let updatedSong = await dispatch(updateSong(updatedSongDetails))
-            .catch(async (res) => {
-                const data = await res.json()
-                if (data && data.errors) setErrors(data.errors)
-            })
-        reset();
-    };
 
+        const formData = new FormData()
+        formData.append('file', songSelected)
+        formData.append('upload_preset', 'd3gthd7l')
+
+        Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
+            if (response.data.url) url = response.data.url
+
+
+            const updatedSongDetails = {
+                id: props,
+                songName,
+                songLink: url,
+                userId
+            };
+            let updatedSong = await dispatch(updateSong(updatedSongDetails))
+                .catch(async (res) => {
+                    const data = await res.json()
+                    if (data && data.errors) setErrors(data.errors)
+                })
+            reset();
+        });
+    }
     return (
         <div className="inputBox">
             <h1>Update A Song</h1>
@@ -55,13 +71,23 @@ const EditSongForm = ({ props }) => {
                     placeholder="Song Name"
                     name="Song Name"
                 />
-                <input
+                {/* <input
                     type="text"
                     onChange={(e) => setSongLink(e.target.value)}
                     value={songLink}
                     placeholder="Song Link"
                     name="Audio File"
+                /> */}
+                <input
+                    // type="text"
+                    // onChange={(e) => setSongLink(e.target.value)}
+                    type='file'
+                    onChange={(e) => { setSongSelected(e.target.files[0]) }}
+                    // value={songLink}
+                    placeholder="Song Link"
+                    name="Audio File"
                 />
+
                 <button type="submit">Submit</button>
             </form>
         </div>
