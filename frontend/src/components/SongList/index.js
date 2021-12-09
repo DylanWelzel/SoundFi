@@ -12,7 +12,6 @@ import SpecificSong from '../SpecificSong';
 const SongList = () => {
 
     const [addShowForm, setAddShowForm] = useState(false);
-    // const [editShowForm, setEditShowForm] = useState(false);
 
     const history = useHistory()
     const dispatch = useDispatch();
@@ -46,9 +45,7 @@ const SongList = () => {
         <div>
             <div>
                 <button onClick={addFormCheck}>add a song</button>
-                {addShowForm ?
-                    <SongForm />
-                    : null}
+                {addShowForm && <SongForm setAddShowForm={setAddShowForm} />}
             </div>
             <h1>Song List</h1>
             <ol>

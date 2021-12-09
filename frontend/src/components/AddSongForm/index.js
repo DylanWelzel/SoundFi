@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import Axios from 'axios'
 
-const SongForm = () => {
+const SongForm = ({ setAddShowForm }) => {
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
@@ -39,6 +39,11 @@ const SongForm = () => {
             setErrors(['You have to upload an audio file!'])
             setLoading(false)
         }
+        if (songName === '')     {
+            setErrors(['Song name must not be empty.'])
+            setLoading(false)
+            return
+        }
 
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
             if (response.data.url) url = response.data.url
@@ -51,8 +56,9 @@ const SongForm = () => {
                 .catch(async (res) => {
                     const data = await res.json()
                     if (data && data.errors) setErrors(data.errors)
-                    setLoading(false)
                 })
+            setAddShowForm(false)
+            setLoading(false)
 
 
         })

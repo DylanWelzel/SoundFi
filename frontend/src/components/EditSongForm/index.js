@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Axios from 'axios'
 
 
-const EditSongForm = ({ props }) => {
+const EditSongForm = ({ props, setEditShowForm }) => {
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
@@ -39,6 +39,12 @@ const EditSongForm = ({ props }) => {
 
         if (songSelected === '') {
             setErrors(['You have to upload an audio file!'])
+            setLoading(false)
+        }
+        if (songName === '') {
+            setErrors(['Song name must not be empty.'])
+            setLoading(false)
+            return
         }
 
 
@@ -58,6 +64,7 @@ const EditSongForm = ({ props }) => {
                     if (data && data.errors) setErrors(data.errors)
                     setLoading(false)
                 })
+            setEditShowForm(false)
             reset();
         });
     }
