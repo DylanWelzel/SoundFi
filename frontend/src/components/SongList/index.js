@@ -46,11 +46,14 @@ const SongList = () => {
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
             </h1>
-            <div className='addsongmessage'>
-                {/* <button onClick={addFormCheck}>add a song</button> */}
-                Or upload your own
-                {CurrentUserId && <SongForm setAddShowForm={setAddShowForm} />}
-            </div>
+            {/* <button onClick={addFormCheck}>add a song</button> */}
+            {CurrentUserId &&
+                <div className='hiddenmessage'>
+                    <p className='addsongmessage'>Or upload your own
+                        <SongForm setAddShowForm={setAddShowForm} />
+                    </p>
+                </div>
+            }
             <ol className='songlist'>
                 {songs.map(({ id, songName, songLink, userId, albumImage }) => (
                     <div className='singlesong'>
