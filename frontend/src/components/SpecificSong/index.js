@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { deleteSong, getOneSong } from '../../store/song';
 import EditSongForm from '../EditSongForm';
 
-const SpecificSong = ({ id, songName, songLink, userId }) => {
+const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
     const [editShowForm, setEditShowForm] = useState(false);
 
     const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const SpecificSong = ({ id, songName, songLink, userId }) => {
                 controls
                 key={songLink}
             />
+            <img src={albumImage} alt="album image" srcset="" />
             {userId === CurrentUserId ?
                 <>
                     <div className='editbutton'>

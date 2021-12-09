@@ -51,9 +51,9 @@ const SongList = () => {
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
             </h1>
             <ol className='songlist'>
-                {songs.map(({ id, songName, songLink, userId }) => (
+                {songs.map(({ id, songName, songLink, userId, albumImage }) => (
                     <div className='singlesong'>
-                        <SpecificSong id={id} songName={songName} songLink={songLink} userId={userId} />
+                        <SpecificSong id={id} songName={songName} songLink={songLink} userId={userId} albumImage={albumImage} />
                     </div>
                 ))}
             </ol>

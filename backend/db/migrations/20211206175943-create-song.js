@@ -16,6 +16,11 @@ module.exports = {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
+      albumImage: {
+        type: Sequelize.STRING(20000),
+        allowNull: false,
+      },
+
       // albumId: {
       //   // allowNull: false,
       //   type: Sequelize.INTEGER,

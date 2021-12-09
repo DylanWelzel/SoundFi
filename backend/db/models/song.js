@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    albumImage: {
+      type: DataTypes.STRING(20000),
+      allowNull: false,
+    },
     // albumId: {
     //   type: DataTypes.INTEGER,
     //   // allowNull: false,

@@ -10,6 +10,7 @@ import Axios from 'axios'
 const SongForm = ({ setShowModal }) => {
     const dispatch = useDispatch();
 
+    const [albumImage, setAlbumImage] = useState('')
 
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
@@ -45,11 +46,18 @@ const SongForm = ({ setShowModal }) => {
             return
         }
 
+        if (albumImage === '') {
+            setErrors(['Album image link must not be empty'])
+            setLoading(false)
+            return
+        }
+
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
             if (response.data.url) url = response.data.url
             const newSong = {
                 songName,
                 songLink: url,
+                albumImage,
                 userId
             };
             const song = await dispatch(postSong(newSong))
@@ -80,6 +88,13 @@ const SongForm = ({ setShowModal }) => {
                     value={songName}
                     placeholder="Song Name"
                     name="Song Name"
+                />
+                <input
+                    type="text"
+                    onChange={(e) => setAlbumImage(e.target.value)}
+                    value={albumImage}
+                    placeholder="Album Image URL"
+                    name="Album Image URL"
                 />
                 <input
                     type='file'
