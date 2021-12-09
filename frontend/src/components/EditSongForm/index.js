@@ -9,7 +9,6 @@ import Axios from 'axios'
 
 
 const EditSongForm = ({ props }) => {
-    console.log(props)
     const dispatch = useDispatch();
 
     const [songName, setSongName] = useState("");
@@ -23,8 +22,6 @@ const EditSongForm = ({ props }) => {
     const reset = () => {
         setSongName("");
         setSongLink("");
-        // setAlbumName('');
-        // setArtistName('')
     };
     const user = useSelector((state) => state.session.user);
     const userId = user?.id
@@ -37,6 +34,11 @@ const EditSongForm = ({ props }) => {
         const formData = new FormData()
         formData.append('file', songSelected)
         formData.append('upload_preset', 'd3gthd7l')
+
+        if (songSelected === '') {
+            setErrors(['You have to upload an audio file!'])
+        }
+
 
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
             if (response.data.url) url = response.data.url
@@ -56,6 +58,7 @@ const EditSongForm = ({ props }) => {
             reset();
         });
     }
+
     return (
         <div className="inputBox">
             <h1>Update A Song</h1>
@@ -71,23 +74,12 @@ const EditSongForm = ({ props }) => {
                     placeholder="Song Name"
                     name="Song Name"
                 />
-                {/* <input
-                    type="text"
-                    onChange={(e) => setSongLink(e.target.value)}
-                    value={songLink}
-                    placeholder="Song Link"
-                    name="Audio File"
-                /> */}
                 <input
-                    // type="text"
-                    // onChange={(e) => setSongLink(e.target.value)}
                     type='file'
                     onChange={(e) => { setSongSelected(e.target.files[0]) }}
-                    // value={songLink}
                     placeholder="Song Link"
                     name="Audio File"
                 />
-
                 <button type="submit">Submit</button>
             </form>
         </div>

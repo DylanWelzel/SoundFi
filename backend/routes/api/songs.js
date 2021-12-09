@@ -56,7 +56,6 @@ router.put('/:id', requireAuth, songValidations, asyncHandler(async function (re
             userId
         }
     )
-    console.log(updatedSong, 'updated songggg')
     return res.json(updatedSong);
 }));
 
