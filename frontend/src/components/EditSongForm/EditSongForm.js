@@ -28,7 +28,8 @@ const EditSongForm = ({ props, setShowModal }) => {
     const userId = user?.id
 
     const state = useSelector((state) => state.songState.entries[props]);
-
+    console.log(state.songLink)
+    const oldSongLink = state.songLink
 
     let url;
 
@@ -40,6 +41,7 @@ const EditSongForm = ({ props, setShowModal }) => {
         setAlbumImage(state.albumImage)
     }, [state])
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
@@ -48,10 +50,10 @@ const EditSongForm = ({ props, setShowModal }) => {
         formData.append('file', songSelected)
         formData.append('upload_preset', 'd3gthd7l')
 
-        if (songSelected === '') {
-            setErrors(['You have to upload an audio file!'])
-            setLoading(false)
-        }
+        // if (songSelected === '') {
+        //     setErrors(['You have to upload an audio file!'])
+        //     setLoading(false)
+        // }
         if (songName === '') {
             setErrors(['Song name must not be empty.'])
             setLoading(false)
@@ -63,24 +65,19 @@ const EditSongForm = ({ props, setShowModal }) => {
             return
         }
 
-        Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
-            if (response.data.url) url = response.data.url
-
-
-            const updatedSongDetails = {
-                id: props,
-                songName,
-                songLink: url,
-                albumImage,
-                userId
-            };
-            let updatedSong = await dispatch(updateSong(updatedSongDetails))
-                .catch(async (res) => {
-                    const data = await res.json()
-                    if (data && data.errors) setErrors(data.errors)
-                })
-            setShowModal(false)
-        });
+        const updatedSongDetails = {
+            id: props,
+            songName,
+            songLink: oldSongLink,
+            albumImage,
+            userId
+        };
+        let updatedSong = await dispatch(updateSong(updatedSongDetails))
+            .catch(async (res) => {
+                const data = await res.json()
+                if (data && data.errors) setErrors(data.errors)
+            })
+        setShowModal(false)
     }
 
     return (
@@ -108,12 +105,12 @@ const EditSongForm = ({ props, setShowModal }) => {
                     placeholder="Album Image URL"
                     name="Album Image URL"
                 />
-                <input
+                {/* <input
                     type='file'
                     onChange={(e) => { setSongSelected(e.target.files[0]) }}
                     placeholder="Song Link"
                     name="Audio File"
-                />
+                /> */}
                 {loading &&
                     <p className='spinner'></p>
                 }

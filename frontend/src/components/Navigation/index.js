@@ -26,6 +26,9 @@ function Navigation({ isLoaded }) {
 
     return (
         <>
+            <div className="backgroundcontainer">
+                <img className='background' src="https://i.pinimg.com/originals/4a/65/ab/4a65abeead3a8d113bccfee5d5d239f4.gif" alt="" srcset="" />
+            </div>
             <ul className='navbar'>
                 <div className='links'>
                     <div className='logoandtitle'>
