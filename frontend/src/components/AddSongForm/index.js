@@ -5,6 +5,11 @@ import { postSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
 
+// import { Image, Audio } from 'cloudinary-react'
+
+
+import Axios from 'axios'
+
 const SongForm = () => {
     const dispatch = useDispatch();
 
@@ -12,6 +17,8 @@ const SongForm = () => {
     const [songLink, setSongLink] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const [songSelected, setSongSelected] = useState("")
+    const [url, setUrl] = useState('')
 
     const reset = () => {
         setSongName("");
@@ -24,6 +31,7 @@ const SongForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(songLink)
         const newSong = {
             songName,
             songLink,
@@ -36,7 +44,19 @@ const SongForm = () => {
             })
         reset();
     };
-    console.log(errors)
+
+    const uploadSong = (files) => {
+        console.log(files[0])
+        const formData = new FormData()
+        formData.append('file', songSelected)
+        formData.append('upload_preset', 'd3gthd7l')
+
+        Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then((response) => {
+            console.log(response.data.url, 'responseeee')
+            setSongLink(response.data.url)
+        })
+    }
+
 
     return (
         <div className="inputBox">
@@ -52,14 +72,24 @@ const SongForm = () => {
                     placeholder="Song Name"
                     name="Song Name"
                 />
-                <input
+                {/* <input type="text"
                     type="text"
                     onChange={(e) => setSongLink(e.target.value)}
                     value={songLink}
+                /> */}
+                <input
+                    // type="text"
+                    // onChange={(e) => setSongLink(e.target.value)}
+                    type='file'
+                    onChange={(e) => { setSongSelected(e.target.files[0]) }}
+                    // value={songLink}
                     placeholder="Song Link"
                     name="Audio File"
                 />
-                <button type="submit">Submit</button>
+                <button onClick={uploadSong} type="submit">Submit</button>
+
+                {/* <Audio cloudName='dyhfkvy6u' publicId='https://res.cloudinary.com/dyhfkvy6u/image/upload/v1639007386/x8cgeebtzdfeou4p6bhw.png' /> */}
+
             </form>
         </div>
     );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -29,12 +30,12 @@ const SpecificSong = ({ id, songName, songLink, userId }) => {
     return (
         <div className='songdetails' key={id}>
             <p key={id}>songName={songName}</p>
-            {/* <ReactAudioPlayer
-                            src={songLink}
-                            autoPlay
-                            controls
-                            key={songLink}
-                        /> */}
+            <ReactAudioPlayer
+                src={songLink}
+                autoPlay
+                controls
+                key={songLink}
+            />
             {userId === CurrentUserId ?
                 <>
                     <div>
