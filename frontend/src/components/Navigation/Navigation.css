@@ -50,7 +50,7 @@ html, body {
     padding: 0;
   }
 
-img {
+.backgroundcontainer img {
     z-index: -1;
     position: absolute;
     width: 100%;
