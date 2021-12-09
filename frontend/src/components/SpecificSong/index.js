@@ -29,8 +29,9 @@ const SpecificSong = ({ id, songName, songLink, userId }) => {
 
     return (
         <div className='songdetails' key={id}>
-            <p key={id}>songName={songName}</p>
+            <p className='songname' key={id}>{songName}</p>
             <ReactAudioPlayer
+                className='audioplayer'
                 src={songLink}
                 autoPlay
                 controls
@@ -38,13 +39,11 @@ const SpecificSong = ({ id, songName, songLink, userId }) => {
             />
             {userId === CurrentUserId ?
                 <>
-                    <div>
-                        <button id={id} onClick={remove}>remove</button>
-                    </div>
-                    <div>
-
+                    <div className='editbutton'>
                         <EditSongForm props={id} />
-
+                    </div>
+                    <div className='removebutton'>
+                        <button id={id} onClick={remove}>Delete Song</button>
                     </div>
                 </>
                 : null}

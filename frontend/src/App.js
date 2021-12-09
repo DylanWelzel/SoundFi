@@ -20,7 +20,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       <Switch>
         <Route exact path="/addsong" component={AddSongForm} />
-        <Route exact path="/songlist" component={SongList} />
+        <Route exact path="/" component={SongList} />
         <Route path="/editsong/:id" component={EditSongForm} />
       </Switch>
     </>

@@ -5,7 +5,6 @@ import EditSongForm from './EditSongForm'
 import './EditSongForm.css'
 
 function LoginFormModal({ props }) {
-    console.log(props)
     const [showModal, setShowModal] = useState(false);
 
     return (

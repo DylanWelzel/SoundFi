@@ -10,7 +10,6 @@ import Axios from 'axios'
 
 const EditSongForm = ({ props, setShowModal }) => {
     const dispatch = useDispatch();
-    console.log(props)
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
     const [errors, setErrors] = useState([]);
@@ -26,6 +25,10 @@ const EditSongForm = ({ props, setShowModal }) => {
     };
     const user = useSelector((state) => state.session.user);
     const userId = user?.id
+
+    const state = useSelector((state) => state.songState.entries[props]);
+
+    setSongName(state.songName)
 
     let url;
 
@@ -68,7 +71,7 @@ const EditSongForm = ({ props, setShowModal }) => {
     }
 
     return (
-        <div className="inputBox">
+        < div className="inputBox" >
             <h1>Update A Song</h1>
             <ul>
                 {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
@@ -78,7 +81,8 @@ const EditSongForm = ({ props, setShowModal }) => {
                 <input
                     type="text"
                     onChange={(e) => setSongName(e.target.value)}
-                    value={songName}
+                    // value={songName}
+                    value={state.songName}
                     placeholder="Song Name"
                     name="Song Name"
                 />
@@ -91,7 +95,7 @@ const EditSongForm = ({ props, setShowModal }) => {
                 {loading && <p>loading!</p>}
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </div >
     );
 };
 

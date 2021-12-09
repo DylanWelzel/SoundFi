@@ -8,6 +8,7 @@ import { useHistory } from 'react-router';
 import SongForm from '../AddSongForm';
 import EditSongForm from '../EditSongForm';
 import SpecificSong from '../SpecificSong';
+import './SongList.css'
 
 const SongList = () => {
 
@@ -47,15 +48,16 @@ const SongList = () => {
                 {/* <button onClick={addFormCheck}>add a song</button> */}
                 {<SongForm setAddShowForm={setAddShowForm} />}
             </div>
-            <h1>Song List</h1>
-            <ol>
+            <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
+            </h1>
+            <ol className='songlist'>
                 {songs.map(({ id, songName, songLink, userId }) => (
-                    <div>
+                    <div className='singlesong'>
                         <SpecificSong id={id} songName={songName} songLink={songLink} userId={userId} />
                     </div>
                 ))}
             </ol>
-        </div>
+        </div >
     );
 };
 export default SongList;
