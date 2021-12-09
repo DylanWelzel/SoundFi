@@ -81,8 +81,9 @@ const SongForm = ({ setShowModal }) => {
             <ul>
                 {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
             </ul>
-            <form onSubmit={handleSubmit}>
+            <form className='addsongform' onSubmit={handleSubmit}>
                 <input
+                    className='textinput'
                     type="text"
                     onChange={(e) => setSongName(e.target.value)}
                     value={songName}
@@ -90,6 +91,7 @@ const SongForm = ({ setShowModal }) => {
                     name="Song Name"
                 />
                 <input
+                    className='textinput'
                     type="text"
                     onChange={(e) => setAlbumImage(e.target.value)}
                     value={albumImage}
@@ -102,7 +104,8 @@ const SongForm = ({ setShowModal }) => {
                     placeholder="Song Link"
                     name="Audio File"
                 />
-                {loading && <p>loading!</p>}
+                {loading && <p className='spinner'></p>
+                }
                 <button type="submit">Submit</button>
 
 

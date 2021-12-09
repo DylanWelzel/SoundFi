@@ -47,12 +47,13 @@ router.put('/:id', requireAuth, songValidations, asyncHandler(async function (re
     const id = req.params.id
     const originalSong = await Song.findByPk(id)
     if (!originalSong) throw new Error('Cannot find song');
-    const { songName, songLink, userId } = req.body
+    const { songName, songLink, userId, albumImage } = req.body
     const updatedSong = await originalSong.update(
         {
             id,
             songName,
             songLink,
+            albumImage,
             userId
         }
     )

@@ -15,6 +15,7 @@ const EditSongForm = ({ props, setShowModal }) => {
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(false)
 
+    const [albumImage, setAlbumImage] = useState('')
 
     const [songSelected, setSongSelected] = useState("")
 
@@ -35,6 +36,9 @@ const EditSongForm = ({ props, setShowModal }) => {
         setSongName(state.songName)
     }, [state])
 
+    useEffect(() => {
+        setAlbumImage(state.albumImage)
+    }, [state])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,7 +57,11 @@ const EditSongForm = ({ props, setShowModal }) => {
             setLoading(false)
             return
         }
-
+        if (albumImage === '') {
+            setErrors(['Album image link must not be empty'])
+            setLoading(false)
+            return
+        }
 
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
             if (response.data.url) url = response.data.url
@@ -63,6 +71,7 @@ const EditSongForm = ({ props, setShowModal }) => {
                 id: props,
                 songName,
                 songLink: url,
+                albumImage,
                 userId
             };
             let updatedSong = await dispatch(updateSong(updatedSongDetails))
@@ -81,8 +90,9 @@ const EditSongForm = ({ props, setShowModal }) => {
                 {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
             </ul>
 
-            <form onSubmit={handleSubmit}>
+            <form className='addsongform' onSubmit={handleSubmit}>
                 <input
+                    className='textinput'
                     type="text"
                     onChange={(e) => setSongName(e.target.value)}
                     // value={songName}
@@ -91,12 +101,22 @@ const EditSongForm = ({ props, setShowModal }) => {
                     name="Song Name"
                 />
                 <input
+                    className='textinput'
+                    type="text"
+                    onChange={(e) => setAlbumImage(e.target.value)}
+                    value={albumImage}
+                    placeholder="Album Image URL"
+                    name="Album Image URL"
+                />
+                <input
                     type='file'
                     onChange={(e) => { setSongSelected(e.target.files[0]) }}
                     placeholder="Song Link"
                     name="Audio File"
                 />
-                {loading && <p>loading!</p>}
+                {loading &&
+                    <p className='spinner'></p>
+                }
                 <button type="submit">Submit</button>
             </form>
         </div >

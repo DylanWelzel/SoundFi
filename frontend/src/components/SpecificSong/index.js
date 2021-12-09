@@ -30,6 +30,7 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
     return (
         <div className='songdetails' key={id}>
             <p className='songname' key={id}>{songName}</p>
+            <img className="albumimage" src={albumImage} alt="album image" srcset="" />
             <ReactAudioPlayer
                 className='audioplayer'
                 src={songLink}
@@ -37,7 +38,6 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
                 controls
                 key={songLink}
             />
-            <img src={albumImage} alt="album image" srcset="" />
             {userId === CurrentUserId ?
                 <>
                     <div className='editbutton'>
