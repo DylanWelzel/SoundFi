@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { updateSong } from "../../store/song";
@@ -28,9 +28,13 @@ const EditSongForm = ({ props, setShowModal }) => {
 
     const state = useSelector((state) => state.songState.entries[props]);
 
-    setSongName(state.songName)
 
     let url;
+
+    useEffect(() => {
+        setSongName(state.songName)
+    }, [state])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -82,7 +86,7 @@ const EditSongForm = ({ props, setShowModal }) => {
                     type="text"
                     onChange={(e) => setSongName(e.target.value)}
                     // value={songName}
-                    value={state.songName}
+                    value={songName}
                     placeholder="Song Name"
                     name="Song Name"
                 />
