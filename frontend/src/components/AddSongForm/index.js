@@ -5,8 +5,6 @@ import { postSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
 
-
-
 import Axios from 'axios'
 
 const SongForm = () => {
@@ -15,9 +13,9 @@ const SongForm = () => {
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
     const [errors, setErrors] = useState([]);
-
     const [songSelected, setSongSelected] = useState("")
-
+    const [loading, setLoading] = useState(false)
+    console.log(loading)
     const reset = () => {
         setSongName("");
         setSongLink("");
@@ -31,12 +29,15 @@ const SongForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true)
+
         const formData = new FormData()
         formData.append('file', songSelected)
         formData.append('upload_preset', 'd3gthd7l')
 
         if (songSelected === '') {
             setErrors(['You have to upload an audio file!'])
+            setLoading(false)
         }
 
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
@@ -50,6 +51,7 @@ const SongForm = () => {
                 .catch(async (res) => {
                     const data = await res.json()
                     if (data && data.errors) setErrors(data.errors)
+                    setLoading(false)
                 })
 
 
@@ -79,6 +81,7 @@ const SongForm = () => {
                     placeholder="Song Link"
                     name="Audio File"
                 />
+                {loading && <p>loading!</p>}
                 <button type="submit">Submit</button>
 
 

@@ -14,6 +14,7 @@ const EditSongForm = ({ props }) => {
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
     const [errors, setErrors] = useState([]);
+    const [loading, setLoading] = useState(false)
 
 
     const [songSelected, setSongSelected] = useState("")
@@ -30,6 +31,7 @@ const EditSongForm = ({ props }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
 
         const formData = new FormData()
         formData.append('file', songSelected)
@@ -54,6 +56,7 @@ const EditSongForm = ({ props }) => {
                 .catch(async (res) => {
                     const data = await res.json()
                     if (data && data.errors) setErrors(data.errors)
+                    setLoading(false)
                 })
             reset();
         });
@@ -80,6 +83,7 @@ const EditSongForm = ({ props }) => {
                     placeholder="Song Link"
                     name="Audio File"
                 />
+                {loading && <p>loading!</p>}
                 <button type="submit">Submit</button>
             </form>
         </div>
