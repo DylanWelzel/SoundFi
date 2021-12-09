@@ -44,8 +44,8 @@ const SongList = () => {
     return (
         <div>
             <div>
-                <button onClick={addFormCheck}>add a song</button>
-                {addShowForm && <SongForm setAddShowForm={setAddShowForm} />}
+                {/* <button onClick={addFormCheck}>add a song</button> */}
+                {<SongForm setAddShowForm={setAddShowForm} />}
             </div>
             <h1>Song List</h1>
             <ol>
