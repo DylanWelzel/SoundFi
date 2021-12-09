@@ -42,10 +42,9 @@ const SpecificSong = ({ id, songName, songLink, userId }) => {
                         <button id={id} onClick={remove}>remove</button>
                     </div>
                     <div>
-                        <button id={id} onClick={editFormCheck}>edit</button>
-                        {editShowForm &&
-                            <EditSongForm props={id} setEditShowForm={setEditShowForm} />
-                        }
+
+                        <EditSongForm props={id} />
+
                     </div>
                 </>
                 : null}
