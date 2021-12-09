@@ -18,7 +18,7 @@ const SongForm = () => {
     const [errors, setErrors] = useState([]);
 
     const [songSelected, setSongSelected] = useState("")
-    const [url, setUrl] = useState('')
+    // const [url, setUrl] = useState('')
 
     const reset = () => {
         setSongName("");
@@ -29,33 +29,47 @@ const SongForm = () => {
     const user = useSelector((state) => state.session.user);
     const userId = user?.id
 
+    let url;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(songLink)
-        const newSong = {
-            songName,
-            songLink,
-            userId
-        };
-        const song = await dispatch(postSong(newSong))
-            .catch(async (res) => {
-                const data = await res.json()
-                if (data && data.errors) setErrors(data.errors)
-            })
-        reset();
-    };
 
-    const uploadSong = (files) => {
-        console.log(files[0])
         const formData = new FormData()
         formData.append('file', songSelected)
         formData.append('upload_preset', 'd3gthd7l')
 
-        Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then((response) => {
-            console.log(response.data.url, 'responseeee')
-            setSongLink(response.data.url)
+        Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
+            if (response.data.url) url = response.data.url
+
+            const newSong = {
+                songName,
+                songLink: url,
+                userId
+            };
+            const song = await dispatch(postSong(newSong))
+                .catch(async (res) => {
+                    const data = await res.json()
+                    if (data && data.errors) setErrors(data.errors)
+                })
+
+
         })
-    }
+
+        // reset();
+    };
+
+
+    // const uploadSong = () => {
+    //     // console.log(files[0])
+    //     const formData = new FormData()
+    //     formData.append('file', songSelected)
+    //     formData.append('upload_preset', 'd3gthd7l')
+
+    //     Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then((response) => {
+    //         if (response.data.url) url = response.data.url
+    //         console.log(url)
+    //     })
+    // }
 
 
     return (
@@ -86,7 +100,7 @@ const SongForm = () => {
                     placeholder="Song Link"
                     name="Audio File"
                 />
-                <button onClick={uploadSong} type="submit">Submit</button>
+                <button type="submit">Submit</button>
 
                 {/* <Audio cloudName='dyhfkvy6u' publicId='https://res.cloudinary.com/dyhfkvy6u/image/upload/v1639007386/x8cgeebtzdfeou4p6bhw.png' /> */}
 
