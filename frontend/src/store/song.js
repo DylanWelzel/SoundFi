@@ -19,7 +19,9 @@ export const getOneSong = (id) => async (dispatch) => {
 
     if (response.ok) {
         const song = await response.json();
-        dispatch(getOne(song));
+        if (song) {
+            dispatch(getOne(song));
+        }
     }
 };
 
