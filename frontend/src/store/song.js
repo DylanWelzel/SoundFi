@@ -7,6 +7,7 @@ const ADD_SONG = 'song/addSongs';
 const REMOVE_SONG = 'song/removeSongs'
 const UPDATE_SONG = 'song/updateSongs'
 const GET_ONE_SONG = 'song/oneSong'
+const GET_ONE_USER = 'song/oneuser'
 
 export const getOne = (song) => ({
     type: GET_ONE_SONG,
@@ -21,6 +22,20 @@ export const getOneSong = (id) => async (dispatch) => {
         dispatch(getOne(song));
     }
 };
+
+export const getAUser = (user) => ({
+    type: GET_ONE_USER,
+    user
+});
+
+export const getOneUser = (userId) => async (dispatch) => {
+    console.log('hiiiii222222')
+    const response = await csrfFetch(`/api/songs/user/${userId}`)
+    if (response.ok) {
+        const user = await response.json()
+        dispatch(getAUser(user))
+    }
+}
 
 
 export const loadSongs = (songs) => ({
@@ -108,6 +123,15 @@ const songReducer = (state = initialState, action) => {
                 entries: {
                     ...state.entries,
                     [action.song.id]: action.song
+                }
+            }
+        }
+        case GET_ONE_USER: {
+            return {
+                ...state,
+                entries: {
+                    ...state.entries,
+                    [action.id]: action.user
                 }
             }
         }

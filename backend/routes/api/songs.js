@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const { Song } = require('../../db/models');
+const { Song, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -15,6 +15,12 @@ router.get('/:id', asyncHandler(async (req, res) => {
     const songId = req.params.id
     const song = await Song.findByPk(songId)
     return res.json(song)
+}));
+
+router.get('/user/:userId', asyncHandler(async (req, res) => {
+    const userId = req.params.userId
+    const user = await User.findByPk(userId)
+    return res.json(user)
 }));
 
 const songValidations = [

@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { deleteSong, getOneSong } from '../../store/song';
 import EditSongForm from '../EditSongForm';
 
 const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
     const [editShowForm, setEditShowForm] = useState(false);
+    // const [currentlyPlayingSong, setCurrentlyPlayingSong] = useState(false)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getOneSong(id));
-        setEditShowForm(false);
     }, [dispatch, id]);
 
     const editFormCheck = (e) => {
@@ -29,14 +29,16 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
 
     return (
         <div className='songdetails' key={id}>
-            <p className='songname' key={id}>{songName}</p>
-            <img className="albumimage" src={albumImage} alt="album image" srcset="" />
-            <ReactAudioPlayer
-                className='audioplayer'
-                src={songLink}
-                controls
-                key={songLink}
-            />
+            <NavLink to={`/song/${id}`}>
+                <p className='songname' key={id}>{songName}</p>
+                <img className="albumimage" src={albumImage} alt="album image" srcset="" />
+                <ReactAudioPlayer
+                    className='audioplayer'
+                    src={songLink}
+                    controls
+                    key={songLink}
+                />
+            </NavLink>
             {userId === CurrentUserId ?
                 <>
                     <div className='editbutton'>

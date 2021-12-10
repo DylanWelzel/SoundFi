@@ -11,14 +11,19 @@ import SpecificSong from '../SpecificSong';
 import './SongList.css'
 
 const SongList = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getSongs());
+    }, [dispatch]);
 
     const [addShowForm, setAddShowForm] = useState(false);
 
     const history = useHistory()
-    const dispatch = useDispatch();
 
     const songsObj = useSelector((state) => state.songState.entries);
     const songs = Object.values(songsObj)
+
 
     const user = useSelector((state) => state.session.user);
     const CurrentUserId = user?.id
@@ -37,11 +42,8 @@ const SongList = () => {
     //     if (!editShowForm) setEditShowForm(true)
     // }
 
-    useEffect(() => {
-        dispatch(getSongs());
-    }, [dispatch]);
 
-
+    console.log(songs, 'songssssss')
     return (
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
