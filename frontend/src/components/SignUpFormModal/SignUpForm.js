@@ -13,7 +13,7 @@ function SignupForm() {
 
     const demoLogin = (e) => {
         e.preventDefault();
-        return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+        return dispatch(sessionActions.login({ credential: 'Dylan', password: 'password' }))
     }
 
     const handleSubmit = (e) => {
