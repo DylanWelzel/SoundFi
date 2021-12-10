@@ -53,7 +53,7 @@ const EditSongForm = ({ props, setShowModal }) => {
             albumImage,
             userId
         };
-        console.log(updatedSongDetails)
+
         let updatedSong = await dispatch(updateSong(updatedSongDetails))
             .catch(async (res) => {
                 const data = await res.json()
@@ -76,23 +76,27 @@ const EditSongForm = ({ props, setShowModal }) => {
             </ul>
 
             <form className='addsongform' onSubmit={handleSubmit}>
-                <input
-                    className='textinput'
-                    type="text"
-                    onChange={(e) => setSongName(e.target.value)}
-                    // value={songName}
-                    value={songName}
-                    placeholder="Smells Like Teen Spirit"
-                    name="Song Name"
-                />
-                <input
-                    className='textinput'
-                    type="text"
-                    onChange={(e) => setAlbumImage(e.target.value)}
-                    value={albumImage}
-                    placeholder="https://i.imgur.com/nevermind.jpeg"
-                    name="Album Image URL"
-                />
+                <label>Song Name
+                    <input
+                        className='textinput'
+                        type="text"
+                        onChange={(e) => setSongName(e.target.value)}
+                        // value={songName}
+                        value={songName}
+                        placeholder="Smells Like Teen Spirit"
+                        name="Song Name"
+                    />
+                </label>
+                <label>Album Image
+                    <input
+                        className='textinput'
+                        type="text"
+                        onChange={(e) => setAlbumImage(e.target.value)}
+                        value={albumImage}
+                        placeholder="https://i.imgur.com/nevermind.jpeg"
+                        name="Album Image URL"
+                    />
+                </label>
                 {/* <input
                     type='file'
                     onChange={(e) => { setSongSelected(e.target.files[0]) }}
