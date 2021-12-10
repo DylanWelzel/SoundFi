@@ -29,7 +29,6 @@ const SongPage = () => {
 
     const userstate = useSelector((state) => state.songState.entries['undefined']);
     const username = userstate?.username
-    console.log(username)
 
     useEffect(() => {
         dispatch(getOneUser(userId));

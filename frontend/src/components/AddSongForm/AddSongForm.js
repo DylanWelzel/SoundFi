@@ -49,7 +49,6 @@ const SongForm = ({ setShowModal }) => {
             const song = await dispatch(postSong(newSong))
                 .catch(async (res) => {
                     const data = await res.json()
-                    console.log(data, 'data')
                     if (data && data.errors) {
                         setErrors(data.errors)
                         setLoading(false)
@@ -68,7 +67,6 @@ const SongForm = ({ setShowModal }) => {
             const song = await dispatch(postSong(newSong))
                 .catch(async (res) => {
                     const data = await res.json()
-                    console.log(data, 'data')
                     if (data && data.errors) {
                         setErrors(data.errors)
                         setLoading(false)

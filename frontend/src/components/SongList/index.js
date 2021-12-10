@@ -43,7 +43,6 @@ const SongList = () => {
     // }
 
 
-    console.log(songs, 'songssssss')
     return (
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community

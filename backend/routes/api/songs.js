@@ -68,8 +68,6 @@ const editSongValidations = [
 ]
 
 router.put('/:id', requireAuth, editSongValidations, asyncHandler(async function (req, res) {
-    console.log('hi')
-
     const id = req.params.id
     const originalSong = await Song.findByPk(id)
     if (!originalSong) throw new Error('Cannot find song');

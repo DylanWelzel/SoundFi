@@ -31,7 +31,6 @@ export const getAUser = (user) => ({
 });
 
 export const getOneUser = (userId) => async (dispatch) => {
-    console.log('hiiiii222222')
     const response = await csrfFetch(`/api/songs/user/${userId}`)
     if (response.ok) {
         const user = await response.json()
@@ -95,7 +94,6 @@ export const updateSong = (song) => async (dispatch) => {
         method: 'put',
         body: JSON.stringify(song)
     });
-    console.log('hi')
     if (response.ok) {
         const song = await response.json();
         dispatch(update(song));
