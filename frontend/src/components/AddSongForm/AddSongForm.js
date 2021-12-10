@@ -30,6 +30,7 @@ const SongForm = ({ setShowModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setErrors([])
         setLoading(true)
 
         const formData = new FormData()
@@ -37,19 +38,23 @@ const SongForm = ({ setShowModal }) => {
         formData.append('upload_preset', 'd3gthd7l')
 
         if (songSelected === '') {
-            setErrors(['You have to upload an audio file!'])
-            setLoading(false)
-        }
-        if (songName === '') {
-            setErrors(['Song name must not be empty.'])
-            setLoading(false)
-            return
-        }
 
-        if (albumImage === '') {
-            setErrors(['Album image link must not be empty'])
             setLoading(false)
-            return
+            const newSong = {
+                songName,
+                songLink: url,
+                albumImage,
+                userId
+            };
+            const song = await dispatch(postSong(newSong))
+                .catch(async (res) => {
+                    const data = await res.json()
+                    console.log(data, 'data')
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                        setLoading(false)
+                    }
+                })
         }
 
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
@@ -63,11 +68,16 @@ const SongForm = ({ setShowModal }) => {
             const song = await dispatch(postSong(newSong))
                 .catch(async (res) => {
                     const data = await res.json()
-                    console.log(data)
-                    if (data && data.errors) setErrors(data.errors)
+                    console.log(data, 'data')
+                    if (data && data.errors) {
+                        setErrors(data.errors)
+                        setLoading(false)
+                    }
                 })
-            // setAddShowForm(false)
-            setShowModal(false)
+            if (song) {
+                setShowModal(false)
+                setLoading(false)
+            }
 
 
         })

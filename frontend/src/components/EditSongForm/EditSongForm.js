@@ -28,7 +28,6 @@ const EditSongForm = ({ props, setShowModal }) => {
     const userId = user?.id
 
     const state = useSelector((state) => state.songState.entries[props]);
-    console.log(state.songLink)
     const oldSongLink = state.songLink
 
     let url;
@@ -45,25 +44,7 @@ const EditSongForm = ({ props, setShowModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
-
-        const formData = new FormData()
-        formData.append('file', songSelected)
-        formData.append('upload_preset', 'd3gthd7l')
-
-        // if (songSelected === '') {
-        //     setErrors(['You have to upload an audio file!'])
-        //     setLoading(false)
-        // }
-        if (songName === '') {
-            setErrors(['Song name must not be empty.'])
-            setLoading(false)
-            return
-        }
-        if (albumImage === '') {
-            setErrors(['Album image link must not be empty'])
-            setLoading(false)
-            return
-        }
+        setErrors([]);
 
         const updatedSongDetails = {
             id: props,
@@ -72,12 +53,19 @@ const EditSongForm = ({ props, setShowModal }) => {
             albumImage,
             userId
         };
+        console.log(updatedSongDetails)
         let updatedSong = await dispatch(updateSong(updatedSongDetails))
             .catch(async (res) => {
                 const data = await res.json()
-                if (data && data.errors) setErrors(data.errors)
+                if (data && data.errors) {
+                    setErrors(data.errors)
+                    setLoading(false)
+                }
             })
-        setShowModal(false)
+        if (updatedSong) {
+            setShowModal(false)
+            setLoading(false)
+        }
     }
 
     return (

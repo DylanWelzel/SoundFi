@@ -78,6 +78,7 @@ export const updateSong = (song) => async (dispatch) => {
         method: 'put',
         body: JSON.stringify(song)
     });
+    console.log('hi')
     if (response.ok) {
         const song = await response.json();
         dispatch(update(song));

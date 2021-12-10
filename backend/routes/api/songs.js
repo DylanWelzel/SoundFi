@@ -21,16 +21,21 @@ const songValidations = [
     check('songName')
         .notEmpty()
         .withMessage('Song name must not be empty.'),
-    check('songLink')
+    check('songName')
+        .isLength({ max: 50 })
+        .withMessage('Song name cannot be longer than 50 characters.'),
+    check('albumImage')
         .notEmpty()
-        .withMessage('Song Link must not be empty.'),
+        .withMessage('Album image url must not be empty.'),
+    check('songLink')
+        .exists()
+        .withMessage('You have to upload an audio file!'),
     handleValidationErrors
 ]
 
-router.post('/:id', requireAuth, songValidations, asyncHandler(async (req, res) => {
+router.post('/:id', requireAuth, songValidations, asyncHandler(async function (req, res) {
 
     const song = await Song.create(req.body);
-
     return res.json(song);
 }));
 
@@ -42,8 +47,23 @@ router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
     return res.json(song)
 
 }));
+const editSongValidations = [
+    check('songName')
+        .notEmpty()
+        .withMessage('Song name must not be empty.'),
+    check('songName')
+        .isLength({ max: 50 })
+        .withMessage('Song name cannot be longer than 50 characters.'),
+    check('albumImage')
+        .notEmpty()
+        .withMessage('Album image url must not be empty.'),
 
-router.put('/:id', requireAuth, songValidations, asyncHandler(async function (req, res) {
+    handleValidationErrors
+]
+
+router.put('/:id', requireAuth, editSongValidations, asyncHandler(async function (req, res) {
+    console.log('hi')
+
     const id = req.params.id
     const originalSong = await Song.findByPk(id)
     if (!originalSong) throw new Error('Cannot find song');
