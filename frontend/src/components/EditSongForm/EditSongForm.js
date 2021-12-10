@@ -82,7 +82,7 @@ const EditSongForm = ({ props, setShowModal }) => {
                     onChange={(e) => setSongName(e.target.value)}
                     // value={songName}
                     value={songName}
-                    placeholder="Song Name"
+                    placeholder="Smells Like Teen Spirit"
                     name="Song Name"
                 />
                 <input
@@ -90,7 +90,7 @@ const EditSongForm = ({ props, setShowModal }) => {
                     type="text"
                     onChange={(e) => setAlbumImage(e.target.value)}
                     value={albumImage}
-                    placeholder="Album Image URL"
+                    placeholder="https://i.imgur.com/nevermind.jpeg"
                     name="Album Image URL"
                 />
                 {/* <input

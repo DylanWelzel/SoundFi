@@ -99,7 +99,7 @@ const SongForm = ({ setShowModal }) => {
                         type="text"
                         onChange={(e) => setSongName(e.target.value)}
                         value={songName}
-                        placeholder="Song Name"
+                        placeholder="Smells Like Teen Spirit"
                         name="Song Name"
                     />
                 </label>
@@ -109,7 +109,7 @@ const SongForm = ({ setShowModal }) => {
                         type="text"
                         onChange={(e) => setAlbumImage(e.target.value)}
                         value={albumImage}
-                        placeholder="Album Image URL"
+                        placeholder="https://i.imgur.com/nevermind.jpeg"
                         name="Album Image URL"
                     />
                 </label>
