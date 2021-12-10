@@ -93,30 +93,37 @@ const SongForm = ({ setShowModal }) => {
                 {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
             </ul>
             <form className='addsongform' onSubmit={handleSubmit}>
-                <input
-                    className='textinput'
-                    type="text"
-                    onChange={(e) => setSongName(e.target.value)}
-                    value={songName}
-                    placeholder="Song Name"
-                    name="Song Name"
-                />
-                <input
-                    className='textinput'
-                    type="text"
-                    onChange={(e) => setAlbumImage(e.target.value)}
-                    value={albumImage}
-                    placeholder="Album Image URL"
-                    name="Album Image URL"
-                />
-                <input
-                    type='file'
-                    onChange={(e) => { setSongSelected(e.target.files[0]) }}
-                    placeholder="Song Link"
-                    name="Audio File"
-                />
+                <label>Song Name
+                    <input
+                        className='textinput'
+                        type="text"
+                        onChange={(e) => setSongName(e.target.value)}
+                        value={songName}
+                        placeholder="Song Name"
+                        name="Song Name"
+                    />
+                </label>
+                <label>Album Image URL
+                    <input
+                        className='textinput'
+                        type="text"
+                        onChange={(e) => setAlbumImage(e.target.value)}
+                        value={albumImage}
+                        placeholder="Album Image URL"
+                        name="Album Image URL"
+                    />
+                </label>
+                <label
+                >Audio File
+                    <input
+                        type='file'
+                        onChange={(e) => { setSongSelected(e.target.files[0]) }}
+                        placeholder="Song Link"
+                        name="Audio File"
+                    />
+                </label>
                 {loading && <p className='spinner'></p>}
-                <button type="submit">Submit</button>
+                <button className="submit" type="submit">Submit</button>
 
 
             </form>
