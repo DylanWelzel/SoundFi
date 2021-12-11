@@ -51,7 +51,7 @@ html, body {
   }
 
 .backgroundcontainer img {
-    z-index: -1;
+    /* z-index: -4; */
     position: absolute;
     width: 100%;
     height: 50%;
@@ -62,17 +62,25 @@ html, body {
     /* background-image: url('./lofi-girl.webp'); */
 }
 
+/* ul.navbar {
+    z-index: 1;
+} */
+
+
 .links {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 15px;
+    /* z-index: 10; */
 }
 
 .logoandtitle {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
+
 }
 
 
@@ -84,6 +92,7 @@ html, body {
     display: flex;
     list-style: none;
     align-items: center;
+    z-index: 10;
     /* justify-content: space-around; */
 }
 
@@ -104,6 +113,8 @@ html, body {
     text-shadow: 0 0 3px rgb(5 5 5 / 100%);
     color: #fff;
     padding-left: 8px;
+    z-index: 10;
+
 }
 
 .home-signin {
@@ -181,13 +192,13 @@ button {
     line-height: 30px;
     text-align: center;
     /* position: fixed; */
-    /* z-index: ; */
     top: 15%;
     width: 100%;
     /* left: 50%;
     right: 50%; */
     /* text-align: center; */
     /* max-width: 1260px; */
+    /* z-index: 1; */
 }
 
 .discovertext {

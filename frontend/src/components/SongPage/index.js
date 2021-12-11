@@ -39,13 +39,13 @@ const SongPage = () => {
             <div className='songusercontainer'>
                 <h1 className='profilesongname'>{songName}</h1>
                 <h2 className='profileusername'>{username}</h2>
-            </div>
-            <div className='songlinkcontainer'>
-                <ReactAudioPlayer
-                    className='profileaudioplayer'
-                    src={songLink}
-                    controls
-                />
+                <div className='songlinkcontainer'>
+                    <ReactAudioPlayer
+                        className='profileaudioplayer'
+                        src={songLink}
+                        controls
+                    />
+                </div>
             </div>
             <div className='albumimagecontainer'>
                 <img classname='profilealbumimage' src={albumImage} />

@@ -8,17 +8,19 @@
     font-size: 24px;
     line-height: 37px;
     padding: 4px 7px;
+    width: fit-content;
+    margin-bottom: -5px;
 }
 
 .profilecontainer {
-    padding: 30px 560px 20px 30px;
+    padding: 100px 560px 20px 30px;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 0% ;
     width: 100%;
-    height: 28%;
+    height: 45%;
     /* box-sizing: border-box; */
-    z-index: 10;
+    /* z-index: 1; */
     display: block;
     background: linear-gradient(45deg, #ED4264, #FFEDBC) border-box;
     display: flex;
@@ -30,6 +32,7 @@
 }
 
 .profileusername {
+    width: fit-content;
     padding: 2px 7px 3px;
     font-size: 16px;
     line-height: 1.2;
@@ -39,6 +42,7 @@
     background-color: rgba(0,0,0,.8);
     display: inline;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .profilecontainer img{
@@ -51,7 +55,17 @@
     display: block;
     background-size: cover;
     background-position: 50% 50%;
-    max-width: 340px;
-    max-height: 340px;
-    margin-right: 100px;
+    max-width: 280px;
+    max-height: 280px;
+    margin-right: 55px;
+    border-radius: 50px;
+    border-radius: 50px;
+    border: 5px solid transparent;
+}
+
+.songusercontainer {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-evenly;
 }
