@@ -58,7 +58,7 @@ const SongList = () => {
             setCurrentSong(songs.length - 1)
         }
     }
-    console.log(song)
+
     return (
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
