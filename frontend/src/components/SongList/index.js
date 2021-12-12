@@ -18,12 +18,14 @@ const SongList = () => {
     }, [dispatch]);
 
     const [addShowForm, setAddShowForm] = useState(false);
+    const [currentSong, setCurrentSong] = useState(0);
 
     const history = useHistory()
 
     const songsObj = useSelector((state) => state.songState.entries);
     const songs = Object.values(songsObj)
-
+    // continuous play
+    const song = songs[currentSong];
 
     const user = useSelector((state) => state.session.user);
     const CurrentUserId = user?.id
@@ -42,7 +44,21 @@ const SongList = () => {
     //     if (!editShowForm) setEditShowForm(true)
     // }
 
-
+    const skip = () => {
+        if (songs[currentSong + 1]) {
+            setCurrentSong(i => i + 1)
+        } else {
+            setCurrentSong(0)
+        }
+    }
+    const prev = () => {
+        if (songs[currentSong - 1]) {
+            setCurrentSong(i => i - 1)
+        } else {
+            setCurrentSong(0)
+        }
+    }
+    console.log(song)
     return (
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
@@ -62,6 +78,22 @@ const SongList = () => {
                     </div>
                 ))}
             </ol>
+            <div className='playallcontainer'>
+                <p className='addsongmessage'>Can't decide which song to play? Play them all!</p>
+                {song?.songName && <p className='nowplaying'>Now Playing {song?.songName}</p>}
+                <ReactAudioPlayer
+                    className='audioplayer'
+                    autoPlay={true}
+                    src={song?.songLink}
+                    controls
+                    key={song?.songLink}
+                    onEnded={skip}
+                />
+                <div>
+                    <button className="loginbutton" onClick={prev}>prev</button>
+                    <button className="loginbutton" onClick={skip}>skip</button>
+                </div>
+            </div>
         </div >
     );
 };
