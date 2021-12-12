@@ -55,7 +55,7 @@ const SongList = () => {
         if (songs[currentSong - 1]) {
             setCurrentSong(i => i - 1)
         } else {
-            setCurrentSong(0)
+            setCurrentSong(songs.length - 1)
         }
     }
     console.log(song)
