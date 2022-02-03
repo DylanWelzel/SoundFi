@@ -13,14 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(20000),
       allowNull: false,
     },
-    // albumId: {
-    //   type: DataTypes.INTEGER,
-    //   // allowNull: false,
-    // },
-    // artistId: {
-    //   type: DataTypes.INTEGER,
-    //   // allowNull: false,
-    // },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,

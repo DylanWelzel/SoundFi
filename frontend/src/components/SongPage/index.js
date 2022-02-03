@@ -34,22 +34,30 @@ const SongPage = () => {
         dispatch(getOneUser(userId));
     }, [dispatch, userId]);
 
+    function test() {
+        console.log('hi')
+    }
+
+
     return (
-        <div className='profilecontainer'>
-            <div className='songusercontainer'>
-                <h1 className='profilesongname'>{songName}</h1>
-                <h2 className='profileusername'>{username}</h2>
-                <div className='songlinkcontainer'>
-                    <ReactAudioPlayer
-                        className='profileaudioplayer'
-                        src={songLink}
-                        controls
-                    />
+        <div>
+            <div className='profilecontainer'>
+                <div className='songusercontainer'>
+                    <h1 className='profilesongname'>{songName}</h1>
+                    <h2 className='profileusername'>{username}</h2>
+                    <div className='songlinkcontainer'>
+                        <ReactAudioPlayer
+                            className='profileaudioplayer'
+                            src={songLink}
+                            controls
+                        />
+                    </div>
+                </div>
+                <div className='albumimagecontainer'>
+                    <img classname='profilealbumimage' src={albumImage} />
                 </div>
             </div>
-            <div className='albumimagecontainer'>
-                <img classname='profilealbumimage' src={albumImage} />
-            </div>
+            <button className='test' onClick={test}>test</button>
         </div>
     );
 };
