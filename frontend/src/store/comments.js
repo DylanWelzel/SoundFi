@@ -36,8 +36,8 @@ const deleteComment = (comment) => {
 //Comment Thunks
 
 //Get Comments
-export const getCommentsThunk = () => async (dispatch) => {
-    const res = await csrfFetch(`/api/comments/`);
+export const getCommentsThunk = (songId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/comments/${songId}`);
 
     if (res.ok) {
         const body = await res.json();

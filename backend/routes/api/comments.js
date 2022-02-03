@@ -6,16 +6,17 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
-router.get('/', asyncHandler(async (req, res) => {
-    const comments = await Comment.findAll();
+router.get('/:songId', asyncHandler(async (req, res) => {
+    const songId = req.params.songId
+    const comments = await Comment.findAll({ where: { songId } });
     res.json(comments);
 }));
 
-router.get('/:id', asyncHandler(async (req, res) => {
-    const commentId = req.params.id
-    const comment = await Comment.findByPk(commentId)
-    return res.json(comment)
-}));
+// router.get('/:id', asyncHandler(async (req, res) => {
+//     const commentId = req.params.id
+//     const comment = await Comment.findByPk(commentId)
+//     return res.json(comment)
+// }));
 
 router.get('/user/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
@@ -49,7 +50,7 @@ router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
 }));
 
 
-router.put('/:id', requireAuth, commentValidations, asyncHandler(async function (req, res) {
+router.put('/:id/edit', requireAuth, commentValidations, asyncHandler(async function (req, res) {
     const id = req.params.id
     const originalComment = await Comment.findByPk(id)
     if (!originalComment) throw new Error('Cannot find comment');

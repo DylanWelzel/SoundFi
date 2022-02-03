@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { addCommentThunk, getCommentsThunk } from '../../store/comments';
+import { addCommentThunk, editCommentThunk, getCommentsThunk } from '../../store/comments';
 
 import { getOneUser, getOneSong } from '../../store/song';
 import EditSongForm from '../EditSongForm';
@@ -36,14 +36,14 @@ const SongPage = () => {
     }, [dispatch, userId]);
 
     function test() {
-        dispatch(getCommentsThunk())
+        dispatch(getCommentsThunk(id))
     }
     async function post() {
         const comment = await dispatch(addCommentThunk('testtt!', userId, id))
         console.log(comment)
     }
-    function edit() {
-        dispatch(getCommentsThunk())
+    async function edit() {
+        const comment = await dispatch(editCommentThunk('edit!', 3))
     }
     function del() {
         dispatch(getCommentsThunk())
