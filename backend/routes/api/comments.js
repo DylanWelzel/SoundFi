@@ -40,7 +40,7 @@ router.post('/:songId', requireAuth, commentValidations, asyncHandler(async func
     return res.json(comment);
 }));
 
-router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
+router.delete('/:id/delete', requireAuth, asyncHandler(async function (req, res) {
     const comment = await Comment.findByPk(req.params.id)
     if (!comment) throw new Error('Cannot find comment');
     await Comment.destroy({ where: { id: comment.id } });

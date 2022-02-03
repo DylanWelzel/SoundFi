@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
-import { addCommentThunk, editCommentThunk, getCommentsThunk } from '../../store/comments';
+import { addCommentThunk, deleteCommentThunk, editCommentThunk, getCommentsThunk } from '../../store/comments';
 
 import { getOneUser, getOneSong } from '../../store/song';
 import EditSongForm from '../EditSongForm';
@@ -45,8 +45,8 @@ const SongPage = () => {
     async function edit() {
         const comment = await dispatch(editCommentThunk('edit!', 3))
     }
-    function del() {
-        dispatch(getCommentsThunk())
+    async function del() {
+        const comment = await dispatch(deleteCommentThunk(2))
     }
 
 
