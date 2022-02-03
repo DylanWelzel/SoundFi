@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
+import { addCommentThunk, getCommentsThunk } from '../../store/comments';
 
 import { getOneUser, getOneSong } from '../../store/song';
 import EditSongForm from '../EditSongForm';
@@ -35,7 +36,17 @@ const SongPage = () => {
     }, [dispatch, userId]);
 
     function test() {
-        console.log('hi')
+        dispatch(getCommentsThunk())
+    }
+    async function post() {
+        const comment = await dispatch(addCommentThunk('testtt!', userId, id))
+        console.log(comment)
+    }
+    function edit() {
+        dispatch(getCommentsThunk())
+    }
+    function del() {
+        dispatch(getCommentsThunk())
     }
 
 
@@ -57,7 +68,15 @@ const SongPage = () => {
                     <img classname='profilealbumimage' src={albumImage} />
                 </div>
             </div>
-            <button className='test' onClick={test}>test</button>
+            <button className='test' onClick={test}>get comments</button>
+            <br />
+            <button className='test' onClick={post}>post</button>
+            <br />
+
+            <button className='test' onClick={edit}>edit</button>
+            <br />
+
+            <button className='test' onClick={del}>delete</button>
         </div>
     );
 };

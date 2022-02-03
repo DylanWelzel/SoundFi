@@ -17,6 +17,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(comment)
 }));
 
+router.get('/user/:userId', asyncHandler(async (req, res) => {
+    const userId = req.params.userId
+    const user = await User.findByPk(userId)
+    return res.json(user)
+}));
 
 const commentValidations = [
     check('content')
@@ -28,8 +33,8 @@ const commentValidations = [
     handleValidationErrors
 ]
 
-router.post('/:id', requireAuth, commentValidations, asyncHandler(async function (req, res) {
-
+router.post('/:songId', requireAuth, commentValidations, asyncHandler(async function (req, res) {
+    console.log(req.body, 'testttt')
     const comment = await Comment.create(req.body);
     return res.json(comment);
 }));

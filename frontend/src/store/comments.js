@@ -1,3 +1,6 @@
+import { csrfFetch } from "./csrf";
+
+
 const GET_COMMENTS = "COMMENTS/GET_COMMENTS";
 const ADD_COMMENT = "COMMENTS/ADD_COMMENT";
 const EDIT_COMMENT = "COMMENTS/EDIT_COMMENT";
@@ -34,11 +37,11 @@ const deleteComment = (comment) => {
 
 //Get Comments
 export const getCommentsThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/comments/`);
+    const res = await csrfFetch(`/api/comments/`);
 
     if (res.ok) {
         const body = await res.json();
-        dispatch(getComments(body.comments));
+        dispatch(getComments(body));
         return body;
     } else {
         return null;
@@ -46,13 +49,13 @@ export const getCommentsThunk = () => async (dispatch) => {
 };
 
 //Add Comment
-export const addCommentThunk = (content) => async (dispatch) => {
-    const response = await fetch(`/api/comments/`, {
+export const addCommentThunk = (content, userId, songId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/comments/${songId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content }),
+        body: JSON.stringify({ content, userId, songId }),
     });
     const data = await response.json();
     if (data.errors) return data
@@ -62,7 +65,7 @@ export const addCommentThunk = (content) => async (dispatch) => {
 
 //Edit Comment
 export const editCommentThunk = (content, id) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${id}/edit`, {
+    const response = await csrfFetch(`/api/comments/${id}/edit`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content }),
@@ -75,7 +78,7 @@ export const editCommentThunk = (content, id) => async (dispatch) => {
 
 //Delete Comment
 export const deleteCommentThunk = (commentId) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${commentId}/delete`, {
+    const res = await csrfFetch(`/api/comments/${commentId}/delete`, {
         method: "DELETE",
     });
 
