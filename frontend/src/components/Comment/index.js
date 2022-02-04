@@ -5,13 +5,20 @@ import { deleteCommentThunk, editCommentThunk } from '../../store/comments';
 import { getSingleUserThunk } from '../../store/singleUser';
 
 const Comment = ({ songId, username, id, content }) => {
-
     const dispatch = useDispatch();
-
     const sessionUsername = useSelector((state) => state.session.user?.username);
 
-    function commentEdit() {
-        dispatch(editCommentThunk())
+    const [showEdit, setShowEdit] = useState(false)
+    const [editComment, setEditComment] = useState(content)
+
+    function editToggle() {
+        setShowEdit(!showEdit)
+    }
+
+    function commentEdit(e) {
+        e.preventDefault()
+        dispatch(editCommentThunk(editComment, id))
+        setShowEdit(false)
     }
 
     function commentDelete() {
@@ -20,15 +27,28 @@ const Comment = ({ songId, username, id, content }) => {
 
     return (
         <div className='comment' key={id}>
-            <div className='commentContent'>
-                {content}
-            </div>
-            <div className='username'>
+            {!showEdit &&
+                <div className='commentContent'>
+                    {content}
+                </div>
+            }
+            {showEdit &&
+                <form onSubmit={commentEdit} className='editInput'>
+                    <input
+                        placeholder='Edit your comment'
+                        type="text"
+                        onChange={(e) => setEditComment(e.target.value)}
+                        value={editComment}
+                        required={true}
+                    />
+                </form>
+            }
+            <div className='editInput' className='username'>
                 {username}
             </div>
             {sessionUsername === username &&
                 <div className='commentButtonContainer'>
-                    <button onClick={commentEdit} className='commentEdit'>Edit</button>
+                    <button onClick={editToggle} className='commentEdit'>Edit</button>
                     <button onClick={commentDelete} className='commentDelete'>Delete</button>
                 </div>
             }

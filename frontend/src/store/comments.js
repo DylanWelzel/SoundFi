@@ -98,7 +98,7 @@ export default function commentsReducer(state = [], action) {
         case GET_COMMENTS:
             return action.payload;
         case ADD_COMMENT:
-            return [...state, action.payload];
+            return [action.payload, ...state];
         case DELETE_COMMENT:
             return state.filter((comment) => comment.id !== action.payload.id);
         case EDIT_COMMENT:

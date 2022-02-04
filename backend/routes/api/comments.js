@@ -12,7 +12,10 @@ router.get('/:songId', asyncHandler(async (req, res) => {
         include: {
             model: User,
         },
-        where: { songId }
+        where: { songId },
+        order: [
+            ['createdAt', 'DESC'],
+        ],
     });
     res.json(comments);
 }));
@@ -40,7 +43,6 @@ const commentValidations = [
 ]
 
 router.post('/:songId', requireAuth, commentValidations, asyncHandler(async function (req, res) {
-    console.log(req.body, 'testttt')
     const comment = await Comment.create(req.body);
     return res.json(comment);
 }));
@@ -57,7 +59,12 @@ router.delete('/:id/delete', requireAuth, asyncHandler(async function (req, res)
 
 router.put('/:id/edit', requireAuth, commentValidations, asyncHandler(async function (req, res) {
     const id = req.params.id
-    const originalComment = await Comment.findByPk(id)
+    const originalComment = await Comment.findOne({
+        include: {
+            model: User,
+        },
+        where: { id },
+    })
     if (!originalComment) throw new Error('Cannot find comment');
     const { content } = req.body
     const updatedComment = await originalComment.update(
