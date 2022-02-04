@@ -8,7 +8,12 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 router.get('/:songId', asyncHandler(async (req, res) => {
     const songId = req.params.songId
-    const comments = await Comment.findAll({ where: { songId } });
+    const comments = await Comment.findAll({
+        include: {
+            model: User,
+        },
+        where: { songId }
+    });
     res.json(comments);
 }));
 
@@ -18,7 +23,7 @@ router.get('/:songId', asyncHandler(async (req, res) => {
 //     return res.json(comment)
 // }));
 
-router.get('/user/:userId', asyncHandler(async (req, res) => {
+router.get('/users/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const user = await User.findByPk(userId)
     return res.json(user)

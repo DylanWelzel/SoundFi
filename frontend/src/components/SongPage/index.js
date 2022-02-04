@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
-import { addCommentThunk, deleteCommentThunk, editCommentThunk, getCommentsThunk } from '../../store/comments';
+import { useParams } from 'react-router-dom';
+import { addCommentThunk, getCommentsThunk } from '../../store/comments';
 
 import { getOneUser, getOneSong } from '../../store/song';
-import EditSongForm from '../EditSongForm';
+import Comment from '../Comment';
 import './SongPage.css'
 
 const SongPage = () => {
-    const [editShowForm, setEditShowForm] = useState(false);
+    const [comment, setComment] = useState('');
 
     const dispatch = useDispatch();
 
@@ -28,6 +28,8 @@ const SongPage = () => {
     const songName = state?.songName
     const userId = state?.userId
 
+    const comments = useSelector(state => state.commentState)
+
     const userstate = useSelector((state) => state.songState.entries['undefined']);
     const username = userstate?.username
 
@@ -35,20 +37,15 @@ const SongPage = () => {
         dispatch(getOneUser(userId));
     }, [dispatch, userId]);
 
-    function test() {
+    useEffect(() => {
         dispatch(getCommentsThunk(id))
-    }
-    async function post() {
-        const comment = await dispatch(addCommentThunk('testtt!', userId, id))
-        console.log(comment)
-    }
-    async function edit() {
-        const comment = await dispatch(editCommentThunk('edit!', 3))
-    }
-    async function del() {
-        const comment = await dispatch(deleteCommentThunk(2))
-    }
+    }, [dispatch])
 
+    function postComment(e) {
+        e.preventDefault()
+        dispatch(addCommentThunk(comment, userId, id, username))
+        setComment('')
+    }
 
     return (
         <div>
@@ -68,15 +65,29 @@ const SongPage = () => {
                     <img classname='profilealbumimage' src={albumImage} />
                 </div>
             </div>
-            <button className='test' onClick={test}>get comments</button>
-            <br />
-            <button className='test' onClick={post}>post</button>
-            <br />
-
-            <button className='test' onClick={edit}>edit</button>
-            <br />
-
-            <button className='test' onClick={del}>delete</button>
+            <div className='commentsContainer'>
+                <form onSubmit={postComment} className='commentInput'>
+                    <input
+                        placeholder='Leave a comment'
+                        type="text"
+                        onChange={(e) => setComment(e.target.value)}
+                        value={comment}
+                        required={true}
+                    />
+                </form>
+                <div className='commentList'>
+                    {comments && comments?.map(comment => {
+                        return (
+                            <Comment
+                                id={comment.id}
+                                content={comment.content}
+                                songId={comment.songId}
+                                username={comment.User?.username || comment.username}
+                            />
+                        )
+                    })}
+                </div>
+            </div>
         </div>
     );
 };

@@ -49,7 +49,7 @@ export const getCommentsThunk = (songId) => async (dispatch) => {
 };
 
 //Add Comment
-export const addCommentThunk = (content, userId, songId) => async (dispatch) => {
+export const addCommentThunk = (content, userId, songId, username) => async (dispatch) => {
     const response = await csrfFetch(`/api/comments/${songId}`, {
         method: "POST",
         headers: {
@@ -58,6 +58,7 @@ export const addCommentThunk = (content, userId, songId) => async (dispatch) => 
         body: JSON.stringify({ content, userId, songId }),
     });
     const data = await response.json();
+    data['username'] = username
     if (data.errors) return data
     dispatch(addComment(data));
     return data;
