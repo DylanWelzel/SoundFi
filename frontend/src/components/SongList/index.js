@@ -48,8 +48,10 @@ const SongList = () => {
     const skip = () => {
         if (songs[currentSong + 1]) {
             setCurrentSong(i => i + 1)
+            setAutoPlay(true)
         } else {
             setCurrentSong(0)
+            setAutoPlay(true)
         }
     }
     const prev = () => {
@@ -79,7 +81,7 @@ const SongList = () => {
     function onPause() {
         setAutoPlay(false)
     }
-
+    console.log(autoPlay)
     return (
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
