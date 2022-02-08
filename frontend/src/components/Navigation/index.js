@@ -32,10 +32,10 @@ function Navigation({ isLoaded }) {
             <ul className='navbar'>
                 <div className='links'>
                     <div className='logoandtitle'>
-                        <a className='logolink' href="/">
+                        <NavLink className='logolink' exact to="/">
                             <i className="fab fa-soundcloud fa-5x"></i>
                             <p className='soundfi'>SoundFi</p>
-                        </a>
+                        </NavLink>
                     </div>
                     <li className='navbuttonsright'>
                         <NavLink className='home-signin' exact to="/">Home</NavLink>

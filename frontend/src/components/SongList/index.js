@@ -20,7 +20,7 @@ const SongList = () => {
     const [addShowForm, setAddShowForm] = useState(false);
     const [currentSong, setCurrentSong] = useState(0);
     const [searchQuery, setSearchQuery] = useState('')
-
+    const [autoPlay, setAutoPlay] = useState(false)
     const history = useHistory()
 
     const songsObj = useSelector((state) => state.songState.entries);
@@ -72,6 +72,13 @@ const SongList = () => {
         });
     };
     const filteredSongs = filterSongs(songs, searchQuery)
+
+    function onPlay() {
+        setAutoPlay(true)
+    }
+    function onPause() {
+        setAutoPlay(false)
+    }
 
     return (
         <div>
@@ -133,11 +140,14 @@ const SongList = () => {
                 {song?.songName && <p className='nowplaying'>Now Playing {song?.songName}</p>}
                 <ReactAudioPlayer
                     className='audioplayer'
-                    autoPlay={true}
+                    autoPlay={autoPlay}
                     src={song?.songLink}
                     controls
                     key={song?.songLink}
                     onEnded={skip}
+                    onPlay={onPlay}
+                    onPause={onPause}
+                    volume={0.5}
                 />
                 <div>
                     <button className="loginbutton" onClick={prev}>prev</button>
