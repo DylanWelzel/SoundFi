@@ -41,12 +41,13 @@ const Comment = ({ songId, username, id, content }) => {
                         value={editComment}
                         required={true}
                     />
+                    <button type='submit'>Submit</button>
                 </form>
             }
             <div className='editInput' className='username'>
                 {username}
             </div>
-            {sessionUsername === username &&
+            {sessionUsername === username && !showEdit &&
                 <div className='commentButtonContainer'>
                     <button onClick={editToggle} className='commentEdit'>Edit</button>
                     <button onClick={commentDelete} className='commentDelete'>Delete</button>

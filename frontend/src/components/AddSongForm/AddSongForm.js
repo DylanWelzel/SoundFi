@@ -37,8 +37,12 @@ const SongForm = ({ setShowModal }) => {
         formData.append('file', songSelected)
         formData.append('upload_preset', 'd3gthd7l')
 
-        if (songSelected === '') {
+        if (!(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(albumImage)) {
+            setLoading(false)
+            return setErrors(['Album image must be an image!'])
+        }
 
+        if (songSelected === '') {
             setLoading(false)
             const newSong = {
                 songName,

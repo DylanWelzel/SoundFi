@@ -76,7 +76,7 @@
     background-color: green;
 }
 
-.commentInput {
+.Input {
     background: #f2f2f2;
     height: 38px;
     display: flex;
@@ -102,10 +102,41 @@
 
 
 .comment {
-    margin-top: 1.5rem;
-    background-color: rgba(0,0,0,.1);
-    height: 3rem;
-    border-radius: 3px;
+    width: 500px;
+    max-width: 80%;
+    min-width: 300px;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
     position: relative;
-    margin-left: 20px;
+    padding: 10px 20px;
+    background: #efefef;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    inset-inline: 20px;
+    font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+}
+
+.commentContent {
+    margin: 10px;
+    font-size: large;
+}
+
+.username {
+    font-size: medium;
+    color: #ED4264;
+    text-align: right;
+}
+
+.comment button{
+    margin-left: 3px;
+    border: 2px solid #ED4264;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.commentbuttoncontainer {
+    display: flex;
+    justify-content: right;
+    margin-top: 5px;
 }
