@@ -168,13 +168,38 @@
 }
 
 .hiddenMessage input {
-    margin-left: 20px;
     border-radius: 5px;
     box-sizing: border-box;
     border: 1px solid #e5e5e5;
+    border: none;
     border-radius: 5px;
     height: 27px;
     font-size: 14.5px;
     padding-left: 9px;
     transition: border .3s;
+    width: 15vw;
+}
+
+.searchlabel {
+    margin-left: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    font-size: 14.5px;
+    padding-left: 9px;
+    transition: border .3s;
+}
+
+.searchNoUser {
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+    border: none;
+    border-radius: 5px;
+    height: 27px;
+    font-size: 14.5px;
+    padding-left: 9px;
+    transition: border .3s;
+    width: 25vw;
 }

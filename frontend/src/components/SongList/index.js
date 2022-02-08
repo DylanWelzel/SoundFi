@@ -77,19 +77,41 @@ const SongList = () => {
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
             </h1>
-            {/* <button onClick={addFormCheck}>add a song</button> */}
+            {!CurrentUserId &&
+                <div className='hiddenmessage'>
+
+                    <div className='searchlabel'>
+                        <label htmlFor="search">
+                            <i class="fas fa-search"></i>                    </label>
+                        <input
+                            className='searchNoUser'
+                            name='search'
+                            placeholder='Search Songs'
+                            type="text"
+                            value={searchQuery}
+                            onInput={e => setSearchQuery(e.target.value)}
+                            autoComplete="off"
+                        />
+                    </div>
+                </div>
+            }
             {CurrentUserId &&
                 <div className='hiddenmessage'>
                     <p className='addsongmessage'>Or upload your own
                         <SongForm setAddShowForm={setAddShowForm} />
                     </p>
-                    <input
-                        placeholder='Search'
-                        type="text"
-                        value={searchQuery}
-                        onInput={e => setSearchQuery(e.target.value)}
-                        autoComplete="off"
-                    />
+                    <div className='searchlabel'>
+                        <label htmlFor="search">
+                            <i class="fas fa-search"></i>                    </label>
+                        <input
+                            name='search'
+                            placeholder='Search Songs'
+                            type="text"
+                            value={searchQuery}
+                            onInput={e => setSearchQuery(e.target.value)}
+                            autoComplete="off"
+                        />
+                    </div>
                 </div>
             }
             <ol className='songlist'>
