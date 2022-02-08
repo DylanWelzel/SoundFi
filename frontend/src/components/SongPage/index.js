@@ -29,6 +29,7 @@ const SongPage = () => {
     const userId = state?.userId
 
     const comments = useSelector(state => state.commentState)
+    const user = useSelector(state => state.session.user)
 
     const userstate = useSelector((state) => state.songState.entries['undefined']);
     const username = userstate?.username
@@ -66,15 +67,22 @@ const SongPage = () => {
                 </div>
             </div>
             <div className='commentsContainer'>
-                <form onSubmit={postComment} className='commentInput'>
-                    <input
-                        placeholder='Leave a comment'
-                        type="text"
-                        onChange={(e) => setComment(e.target.value)}
-                        value={comment}
-                        required={true}
-                    />
-                </form>
+                {user &&
+                    <form onSubmit={postComment} className='commentInput'>
+                        <input
+                            placeholder='Leave a comment'
+                            type="text"
+                            onChange={(e) => setComment(e.target.value)}
+                            value={comment}
+                            required={true}
+                        />
+                    </form>
+                    ||
+                    <div className='commentsignin'>
+                        Sign in to leave a comment!
+                    </div>
+                }
+
                 <div className='commentList'>
                     {comments && comments?.map(comment => {
                         return (
@@ -88,7 +96,7 @@ const SongPage = () => {
                     })}
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 };
