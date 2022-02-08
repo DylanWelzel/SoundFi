@@ -96,7 +96,6 @@
     height: 27px;
     font-size: 14.5px;
     padding-left: 9px;
-    margin-right: 6px;
     transition: border .3s;
 }
 
@@ -110,11 +109,12 @@
     border-radius: 10px;
     position: relative;
     padding: 10px 20px;
-    background: #efefef;
+    background: #f50;;
     border-radius: 10px;
     margin-bottom: 15px;
     inset-inline: 20px;
     font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+    color: white;
 }
 
 .commentContent {
@@ -124,7 +124,6 @@
 
 .username {
     font-size: medium;
-    color: #ED4264;
     text-align: right;
 }
 
@@ -139,4 +138,16 @@
     display: flex;
     justify-content: right;
     margin-top: 5px;
+}
+
+.commentInput {
+    background: #f2f2f2;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: 815px;
+    border: 1px solid #e5e5e5;
+    transition: background .3s,border .3s;
+    margin-left: 20px;
 }

@@ -69,6 +69,7 @@ const SongList = () => {
                     <p className='addsongmessage'>Or upload your own
                         <SongForm setAddShowForm={setAddShowForm} />
                     </p>
+                    <input type="text" />
                 </div>
             }
             <ol className='songlist'>

@@ -92,7 +92,8 @@
     font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
     /* text-shadow: 0 0 3px rgb(5 5 5 / 50%);
     text-shadow: 0 0 3px rgb(5 5 5 / 50%); */
-    color: #f50
+    color: #f50;
+    margin-top: 0;
 }
 
 .albumimage {
@@ -113,7 +114,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
     font-size: 24px;
     font-weight: 100;
     font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
@@ -144,6 +145,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .nowplaying {
@@ -157,4 +159,22 @@
     overflow-wrap: anywhere;
     /* line-height: 12px; */
     text-align: center;
+}
+
+.hiddenMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hiddenMessage input {
+    margin-left: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    height: 27px;
+    font-size: 14.5px;
+    padding-left: 9px;
+    transition: border .3s;
 }
