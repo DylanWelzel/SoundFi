@@ -19,6 +19,7 @@ const SongList = () => {
 
     const [addShowForm, setAddShowForm] = useState(false);
     const [currentSong, setCurrentSong] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('')
 
     const history = useHistory()
 
@@ -58,6 +59,19 @@ const SongList = () => {
             setCurrentSong(songs.length - 1)
         }
     }
+    console.log(songs, 'songsss')
+
+    const filterSongs = (songs, query) => {
+        if (!query) {
+            return songs;
+        }
+
+        return songs.filter((song) => {
+            const songName = song.songName.toLowerCase();
+            return songName.includes(query.toLowerCase());
+        });
+    };
+    const filteredSongs = filterSongs(songs, searchQuery)
 
     return (
         <div>
@@ -69,15 +83,28 @@ const SongList = () => {
                     <p className='addsongmessage'>Or upload your own
                         <SongForm setAddShowForm={setAddShowForm} />
                     </p>
-                    <input type="text" />
+                    <input
+                        placeholder='Search'
+                        type="text"
+                        value={searchQuery}
+                        onInput={e => setSearchQuery(e.target.value)}
+                        autoComplete="off"
+                    />
                 </div>
             }
             <ol className='songlist'>
-                {songs.map(({ id, songName, songLink, userId, albumImage }) => (
+                {searchQuery.length > 0 && filteredSongs.map(({ id, songName, songLink, userId, albumImage }) => (
                     <div className='singlesong'>
                         <SpecificSong id={id} songName={songName} songLink={songLink} userId={userId} albumImage={albumImage} />
                     </div>
-                ))}
+                ))
+                    ||
+                    songs.map(({ id, songName, songLink, userId, albumImage }) => (
+                        <div className='singlesong'>
+                            <SpecificSong id={id} songName={songName} songLink={songLink} userId={userId} albumImage={albumImage} />
+                        </div>
+                    ))
+                }
             </ol>
             <div className='playallcontainer'>
                 <p className='addsongmessage'>Can't decide which song to play? Play them all!</p>
