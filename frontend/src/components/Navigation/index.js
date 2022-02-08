@@ -32,8 +32,10 @@ function Navigation({ isLoaded }) {
             <ul className='navbar'>
                 <div className='links'>
                     <div className='logoandtitle'>
-                        <i className="fab fa-soundcloud fa-5x"></i>
-                        <p className='soundfi'>SoundFi</p>
+                        <a className='logolink' href="/">
+                            <i className="fab fa-soundcloud fa-5x"></i>
+                            <p className='soundfi'>SoundFi</p>
+                        </a>
                     </div>
                     <li className='navbuttonsright'>
                         <NavLink className='home-signin' exact to="/">Home</NavLink>
