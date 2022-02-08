@@ -45,6 +45,10 @@ const EditSongForm = ({ props, setShowModal }) => {
         e.preventDefault();
         setLoading(true)
         setErrors([]);
+        if (!(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(albumImage)) {
+            setLoading(false)
+            return setErrors(['Album image must be an image!'])
+        }
 
         const updatedSongDetails = {
             id: props,
