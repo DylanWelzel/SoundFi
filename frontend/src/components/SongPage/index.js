@@ -67,9 +67,11 @@ const SongPage = () => {
                 </div>
             </div>
             <div className='commentsContainer'>
-                <div className='commentsignin'>
-                    Enjoying {songName}? Leave a comment!
-                </div>
+                {user &&
+                    <div className='commentsignin'>
+                        Enjoying {songName}? Leave a comment!
+                    </div>
+                }
                 {user &&
                     <div>
                         <form onSubmit={postComment} className='commentInput'>
