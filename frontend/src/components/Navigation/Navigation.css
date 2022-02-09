@@ -20,6 +20,10 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style-type: none;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 120px;
 }
 
 .profile-dropdown button {
