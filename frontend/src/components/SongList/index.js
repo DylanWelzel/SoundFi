@@ -61,7 +61,6 @@ const SongList = () => {
             setCurrentSong(songs.length - 1)
         }
     }
-    console.log(songs, 'songsss')
 
     const filterSongs = (songs, query) => {
         if (!query) {
