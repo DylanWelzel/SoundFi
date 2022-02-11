@@ -108,8 +108,8 @@
 
 
 .comment {
-    width: 500px;
-    max-width: 80%;
+    /* width: 500px; */
+    /* max-width: 80%; */
     min-width: 300px;
     background: #fff;
     padding: 20px 30px;
