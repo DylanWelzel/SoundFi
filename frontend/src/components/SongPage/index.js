@@ -73,7 +73,7 @@ const SongPage = () => {
                     </div>
                 }
                 {user &&
-                    <div>
+                    <div className='commentFormContainer'>
                         <form onSubmit={postComment} className='commentInput'>
                             <input
                                 placeholder='Leave a comment'
