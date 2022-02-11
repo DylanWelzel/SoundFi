@@ -27,12 +27,12 @@ const SongPage = () => {
     const songLink = state?.songLink
     const songName = state?.songName
     const userId = state?.userId
-
+    const commentUserId = useSelector(state => state.session.user?.id)
     const comments = useSelector(state => state.commentState)
     const user = useSelector(state => state.session.user)
 
     const userstate = useSelector((state) => state.songState.entries['undefined']);
-    const username = userstate?.username
+    const username = useSelector(state => state.session.user?.username)
 
     useEffect(() => {
         dispatch(getOneUser(userId));
@@ -44,7 +44,7 @@ const SongPage = () => {
 
     function postComment(e) {
         e.preventDefault()
-        dispatch(addCommentThunk(comment, userId, id, username))
+        dispatch(addCommentThunk(comment, commentUserId, id, username))
         setComment('')
     }
 

@@ -80,7 +80,6 @@ const SongList = () => {
     function onPause() {
         setAutoPlay(false)
     }
-    console.log(autoPlay)
     return (
         <div>
             <h1 className='listtitle'>Hear what’s trending for free in the SoundFi community
