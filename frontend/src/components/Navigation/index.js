@@ -38,6 +38,9 @@ function Navigation({ isLoaded }) {
                         </NavLink>
                     </div>
                     <li className='navbuttonsright'>
+                        <NavLink className='home-signin socials' to={{ pathname: "https://linkedin.com/in/dylan-welzel-107140221" }} target="_blank" exact={true} >LinkedIn</NavLink>
+                        <NavLink className='home-signin socials' to={{ pathname: "https://github.com/dylanwelzel/Kostko-Connect" }} target="_blank" exact={true}>GitHub</NavLink>
+
                         <NavLink className='home-signin' exact to="/">Home</NavLink>
                         {isLoaded && sessionLinks}
                     </li>

@@ -238,3 +238,8 @@ button {
     text-shadow: 0 0 3px rgb(5 5 5 / 50%);
     color: #fff;
 }
+
+
+.socials {
+    background-color: rgb(255, 85, 0);
+}
