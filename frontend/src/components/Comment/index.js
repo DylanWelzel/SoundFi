@@ -16,6 +16,11 @@ const Comment = ({ songId, username, id, content }) => {
         setShowEdit(!showEdit)
     }
 
+    function commentCancel() {
+        setEditComment('')
+        setShowEdit(!showEdit)
+    }
+
     function commentEdit(e) {
         e.preventDefault()
         dispatch(editCommentThunk(editComment, id))
@@ -44,6 +49,7 @@ const Comment = ({ songId, username, id, content }) => {
                         required={true}
                     />
                     <button type='submit'>Submit</button>
+                    <button onClick={commentCancel}>Cancel</button>
                 </form>
             }
             <div className='editInput' className='username'>
