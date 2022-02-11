@@ -9,7 +9,8 @@ const Comment = ({ songId, username, id, content }) => {
     const sessionUsername = useSelector((state) => state.session.user?.username);
 
     const [showEdit, setShowEdit] = useState(false)
-    const [editComment, setEditComment] = useState(content)
+    const [editComment, setEditComment] = useState('')
+
 
     function editToggle() {
         setShowEdit(!showEdit)
@@ -35,6 +36,7 @@ const Comment = ({ songId, username, id, content }) => {
             {showEdit &&
                 <form onSubmit={commentEdit} className='editInput'>
                     <input
+                        className='editcommentinput'
                         placeholder='Edit your comment'
                         type="text"
                         onChange={(e) => setEditComment(e.target.value)}

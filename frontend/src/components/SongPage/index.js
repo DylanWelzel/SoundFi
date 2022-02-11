@@ -93,7 +93,7 @@ const SongPage = () => {
                 <div className='commentList'>
                     {comments && comments?.map(comment => {
                         return (
-                            <Comment
+                            < Comment
                                 id={comment.id}
                                 content={comment.content}
                                 songId={comment.songId}

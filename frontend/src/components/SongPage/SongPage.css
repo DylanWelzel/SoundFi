@@ -98,6 +98,7 @@
     padding-left: 9px;
     transition: border .3s;
 }
+
 .commentList {
     margin-left: 10%;
     margin-right: 10%;
@@ -177,4 +178,16 @@
     color: #333;
     margin: 20px;
 
+}
+
+.editcommentinput {
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    height: 27px;
+    font-size: 14.5px;
+    padding-left: 9px;
+    transition: border .3s;
+    width: 15vw;
 }
