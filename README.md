@@ -15,14 +15,14 @@ Sound Fi allows users to:
 The back end was built with [Express](https://expressjs.com/), and it utilizes a postgreSQL database.
 
 ### Front End
-The front end was built with React.
+The front end was built with React and Redux.
 
 ### Technologies
-Kostco Connect uses:
+Sound Fi uses:
 * JavaScript
 * Express
 * React
-* Cloudinary
+* Cloudinary API
 * CSS
 
 
