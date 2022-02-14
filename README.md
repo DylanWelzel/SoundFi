@@ -30,6 +30,9 @@ Sound Fi uses:
 * [Dylan Welzel](https://github.com/DylanWelzel)
 
 
+## Preview
+![Imgur](https://i.imgur.com/zCw4ttC.png)
+![Imgur](https://i.imgur.com/Mg3cDEG.png)
 
 
 
