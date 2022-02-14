@@ -12,7 +12,7 @@ Sound Fi allows users to:
 
 ## Overall Structure
 ### Back End
-The back end was built with [Express](https://expressjs.com/), and it utilizes a postgreSQL database.
+The back end was built with [Express](https://expressjs.com/), and it utilizes a PostgreSQL database.
 
 ### Front End
 The front end was built with React and Redux.
