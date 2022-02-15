@@ -5,12 +5,14 @@ import sessionReducer from './session';
 import songReducer from "./song";
 import commentsReducer from "./comments";
 import userReducer from "./singleUser";
+import currentlyPlayingReducer from "./currentlyPlaying";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   songState: songReducer,
   commentState: commentsReducer,
-  userState: userReducer
+  userState: userReducer,
+  current: currentlyPlayingReducer,
 });
 
 let enhancer;

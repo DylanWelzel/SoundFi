@@ -27,17 +27,22 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
     const user = useSelector((state) => state.session.user);
     const CurrentUserId = user?.id
 
+    const playSong = () => {
+        
+    }
+
     return (
         <div className='songdetails' key={id}>
             <NavLink to={`/song/${id}`}>
                 <p className='songname' key={id}>{songName}</p>
                 <img className="albumimage" src={albumImage} alt="album image" srcset="" />
-                <ReactAudioPlayer
+                {/* <ReactAudioPlayer
                     className='audioplayer'
                     src={songLink}
                     controls
                     key={songLink}
-                />
+                /> */}
+                <button onClick={playSong}>Play</button>
             </NavLink>
             {userId === CurrentUserId ?
                 <>
