@@ -6,6 +6,7 @@ import { addCommentThunk, getCommentsThunk } from '../../store/comments';
 
 import { getOneUser, getOneSong } from '../../store/song';
 import Comment from '../Comment';
+import Footer from '../Footer';
 import './SongPage.css'
 
 const SongPage = () => {
@@ -104,7 +105,6 @@ const SongPage = () => {
                 </div>
             </div>
         </div >
-
     );
 };
 

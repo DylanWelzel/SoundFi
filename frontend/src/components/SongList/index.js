@@ -9,6 +9,7 @@ import SongForm from '../AddSongForm';
 import EditSongForm from '../EditSongForm';
 import SpecificSong from '../SpecificSong';
 import './SongList.css'
+import Footer from '../Footer';
 
 const SongList = () => {
     const dispatch = useDispatch();
@@ -135,7 +136,7 @@ const SongList = () => {
                     ))
                 }
             </ol>
-            <div className='playallcontainer'>
+            {/* <div className='playallcontainer'>
                 <p className='addsongmessage'>Can't decide which song to play? Play them all!</p>
                 {song?.songName && <p className='nowplaying'>Now Playing {song?.songName}</p>}
                 <ReactAudioPlayer
@@ -153,7 +154,7 @@ const SongList = () => {
                     <button className="loginbutton" onClick={prev}>prev</button>
                     <button className="loginbutton" onClick={skip}>skip</button>
                 </div>
-            </div>
+            </div> */}
         </div >
     );
 };

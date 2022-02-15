@@ -1,0 +1,33 @@
+.test {
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    /* Height of the footer*/
+    /* inset-inline-start: -10px; */
+    /* height: 30px; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    /* margin-bottom: 20px; */
+    background-color: rgb(200, 105, 46);
+
+}
+
+.createdby {
+    color: white;
+}
+
+.nowPlayingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
