@@ -81,6 +81,10 @@ html, body {
         margin-left: 10% !important;
         margin-right: 10% !important;
     }
+    .headers {
+        right: 0;
+        left: 0;
+    }
    }
 
 
