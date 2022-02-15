@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <>
+        <div className='navContainer'>
             <div className="backgroundcontainer">
                 <img className='background' src="https://i.pinimg.com/originals/4a/65/ab/4a65abeead3a8d113bccfee5d5d239f4.gif" alt="" srcset="" />
             </div>
@@ -51,7 +51,7 @@ function Navigation({ isLoaded }) {
                 <h2 className='discoversmalltext'>  SoundFi+ lets you upload your own songs, ad-free, with other users.</h2>
             </div>
 
-        </>
+        </div>
     );
 }
 
