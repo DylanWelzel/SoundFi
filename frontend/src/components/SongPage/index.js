@@ -49,7 +49,8 @@ const SongPage = () => {
     }
 
     return (
-        <div>
+        <div className='bigContainer'>
+            <div className='backgroundOnly'></div>
             <div className='profilecontainer'>
                 <div className='songusercontainer'>
                     <h1 className='profilesongname'>{songName}</h1>
