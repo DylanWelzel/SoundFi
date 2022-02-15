@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
+import { getCurrentlyPlayingThunk } from '../../store/currentlyPlaying';
 
 import { deleteSong, getOneSong } from '../../store/song';
 import EditSongForm from '../EditSongForm';
@@ -28,7 +29,7 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
     const CurrentUserId = user?.id
 
     const playSong = () => {
-        
+        dispatch(getCurrentlyPlayingThunk(id))
     }
 
     return (
@@ -42,8 +43,8 @@ const SpecificSong = ({ id, songName, songLink, userId, albumImage }) => {
                     controls
                     key={songLink}
                 /> */}
-                <button onClick={playSong}>Play</button>
             </NavLink>
+            <button onClick={playSong}>Play</button>
             {userId === CurrentUserId ?
                 <>
                     <div className='editbutton'>

@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 
 const CURRENTLY_PLAYING = "CURRENT/GET_CURRENT";
 
-//COMMENT actions
+//CurrentlyPlaying actions
 
 export const getCurrentlyPlaying = (song) => {
     return {
