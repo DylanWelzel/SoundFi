@@ -13,11 +13,12 @@ const Comment = ({ songId, username, id, content }) => {
 
 
     function editToggle() {
+        setEditComment(content)
         setShowEdit(!showEdit)
     }
 
     function commentCancel() {
-        setEditComment('')
+        // setEditComment('')
         setShowEdit(!showEdit)
     }
 
