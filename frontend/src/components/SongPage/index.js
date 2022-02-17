@@ -54,7 +54,7 @@ const SongPage = () => {
             <div className='profilecontainer'>
                 <div className='songusercontainer'>
                     <h1 className='profilesongname'>{songName}</h1>
-                    <h2 className='profileusername'>{username}</h2>
+                    <h2 className='profileusername'>{userstate?.username}</h2>
                     <div className='songlinkcontainer'>
                         <ReactAudioPlayer
                             className='profileaudioplayer'
