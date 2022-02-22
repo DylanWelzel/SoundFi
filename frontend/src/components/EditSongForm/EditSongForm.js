@@ -101,12 +101,6 @@ const EditSongForm = ({ props, setShowModal }) => {
                         name="Album Image URL"
                     />
                 </label>
-                {/* <input
-                    type='file'
-                    onChange={(e) => { setSongSelected(e.target.files[0]) }}
-                    placeholder="Song Link"
-                    name="Audio File"
-                /> */}
                 {loading &&
                     <p className='spinner'></p>
                 }

@@ -40,11 +40,6 @@ const SongList = () => {
         if (addShowForm) setAddShowForm(false)
         if (!addShowForm) setAddShowForm(true)
     }
-    // const editFormCheck = (e) => {
-    //     if (editShowForm) setEditShowForm(false)
-    //     if (!editShowForm) setEditShowForm(true)
-    // }
-
     const skip = () => {
         if (songs[currentSong + 1]) {
             setCurrentSong(i => i + 1)

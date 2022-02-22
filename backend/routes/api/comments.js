@@ -20,12 +20,6 @@ router.get('/:songId', asyncHandler(async (req, res) => {
     res.json(comments);
 }));
 
-// router.get('/:id', asyncHandler(async (req, res) => {
-//     const commentId = req.params.id
-//     const comment = await Comment.findByPk(commentId)
-//     return res.json(comment)
-// }));
-
 router.get('/users/:userId', asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const user = await User.findByPk(userId)

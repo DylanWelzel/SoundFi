@@ -13,7 +13,6 @@ module.exports = {
                 songName: 'Floating',
                 songLink: 'floating songlink',
                 albumImage: 'floating songlink',
-                // artistId: 1,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -22,7 +21,6 @@ module.exports = {
                 songName: 'Evenings',
                 songLink: 'evenings songlink',
                 albumImage: 'floating songlink',
-                // artistId: 2,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -31,7 +29,6 @@ module.exports = {
                 songName: 'Birds Eye View',
                 songLink: 'birdseyeview songlink',
                 albumImage: 'floating songlink',
-                // artistId: 3,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -40,7 +37,6 @@ module.exports = {
                 songName: 'Lift Up',
                 songLink: 'liftup songlink',
                 albumImage: 'floating songlink',
-                // artistId: 4,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -49,7 +45,6 @@ module.exports = {
                 songName: 'Hope',
                 songLink: 'hope songlink',
                 albumImage: 'floating songlink',
-                // artistId: 5,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -58,7 +53,6 @@ module.exports = {
                 songName: 'Wishes',
                 songLink: 'wishes songlink',
                 albumImage: 'floating songlink',
-                // artistId: 6,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -67,7 +61,6 @@ module.exports = {
                 songName: 'Perspectives',
                 songLink: 'perspectives songlink',
                 albumImage: 'floating songlink',
-                // artistId: 7,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()
@@ -76,7 +69,6 @@ module.exports = {
                 songName: 'Sinking Fatigue',
                 songLink: 'sinkingfatigue songlink',
                 albumImage: 'floating songlink',
-                // artistId: 8,
                 userId: 1,
                 createdAt: new Date(),
                 updatedAt: new Date()

@@ -20,17 +20,6 @@ module.exports = {
         type: Sequelize.STRING(20000),
         allowNull: false,
       },
-
-      // albumId: {
-      //   // allowNull: false,
-      //   type: Sequelize.INTEGER,
-      //   references: { model: "Albums" },
-      // },
-      // artistId: {
-      //   // allowNull: false,
-      //   type: Sequelize.INTEGER,
-      //   references: { model: "Artists" },
-      // },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,

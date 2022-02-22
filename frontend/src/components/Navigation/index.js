@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormModal';
-// import image from './lofi-girl.webp'
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
