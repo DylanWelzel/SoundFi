@@ -5,45 +5,46 @@ import { postSong } from "../../store/song";
 
 import { useSelector } from "react-redux";
 
-import Axios from 'axios'
+import Axios from 'axios';
 
 const SongForm = ({ setShowModal }) => {
     const dispatch = useDispatch();
 
-    const [albumImage, setAlbumImage] = useState('')
+    const [albumImage, setAlbumImage] = useState('');
 
     const [songName, setSongName] = useState("");
     const [songLink, setSongLink] = useState("");
     const [errors, setErrors] = useState([]);
-    const [songSelected, setSongSelected] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [songSelected, setSongSelected] = useState("");
+    const [loading, setLoading] = useState(false);
     const reset = () => {
         setSongName("");
         setSongLink("");
 
     };
     const user = useSelector((state) => state.session.user);
-    const userId = user?.id
+    const userId = user?.id;
 
     let url;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        setErrors([])
-        setLoading(true)
+        setErrors([]);
+        setLoading(true);
 
-        const formData = new FormData()
-        formData.append('file', songSelected)
-        formData.append('upload_preset', 'd3gthd7l')
+        const formData = new FormData();
+        formData.append('file', songSelected);
+        formData.append('upload_preset', 'd3gthd7l');
 
         if (!(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(albumImage)) {
-            setLoading(false)
-            return setErrors(['Album image must be an image!'])
-        }
+            setLoading(false);
+            return setErrors(['Album image must be an image!']);
+        };
 
+        // error handling if no mp3 chosen
         if (songSelected === '') {
-            setLoading(false)
+            setLoading(false);
             const newSong = {
                 songName,
                 songLink: url,
@@ -52,16 +53,17 @@ const SongForm = ({ setShowModal }) => {
             };
             const song = await dispatch(postSong(newSong))
                 .catch(async (res) => {
-                    const data = await res.json()
+                    const data = await res.json();
                     if (data && data.errors) {
-                        setErrors(data.errors)
-                        setLoading(false)
-                    }
-                })
-        }
+                        setErrors(data.errors);
+                        setLoading(false);
+                    };
+                });
+        };
 
+        // if valid mp3
         Axios.post("https://api.cloudinary.com/v1_1/dyhfkvy6u/video/upload", formData).then(async (response) => {
-            if (response.data.url) url = response.data.url
+            if (response.data.url) url = response.data.url;
             const newSong = {
                 songName,
                 songLink: url,
@@ -70,19 +72,19 @@ const SongForm = ({ setShowModal }) => {
             };
             const song = await dispatch(postSong(newSong))
                 .catch(async (res) => {
-                    const data = await res.json()
+                    const data = await res.json();
                     if (data && data.errors) {
-                        setErrors(data.errors)
-                        setLoading(false)
-                    }
-                })
+                        setErrors(data.errors);
+                        setLoading(false);
+                    };
+                });
             if (song) {
-                setShowModal(false)
-                setLoading(false)
-            }
+                setShowModal(false);
+                setLoading(false);
+            };
 
 
-        })
+        });
 
         // reset();
     };

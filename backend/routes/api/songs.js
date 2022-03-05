@@ -12,15 +12,15 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.get('/:id', asyncHandler(async (req, res) => {
-    const songId = req.params.id
-    const song = await Song.findByPk(songId)
-    return res.json(song)
+    const songId = req.params.id;
+    const song = await Song.findByPk(songId);
+    return res.json(song);
 }));
 
 router.get('/user/:userId', asyncHandler(async (req, res) => {
-    const userId = req.params.userId
-    const user = await User.findByPk(userId)
-    return res.json(user)
+    const userId = req.params.userId;
+    const user = await User.findByPk(userId);
+    return res.json(user);
 }));
 
 const songValidations = [
@@ -37,7 +37,7 @@ const songValidations = [
         .exists()
         .withMessage('You have to upload an audio file!'),
     handleValidationErrors
-]
+];
 
 router.post('/:id', requireAuth, songValidations, asyncHandler(async function (req, res) {
 
@@ -46,11 +46,11 @@ router.post('/:id', requireAuth, songValidations, asyncHandler(async function (r
 }));
 
 router.delete('/:id', requireAuth, asyncHandler(async function (req, res) {
-    const song = await Song.findByPk(req.params.id)
+    const song = await Song.findByPk(req.params.id);
     if (!song) throw new Error('Cannot find song');
     await Song.destroy({ where: { id: song.id } });
 
-    return res.json(song)
+    return res.json(song);
 
 }));
 const editSongValidations = [
@@ -65,13 +65,13 @@ const editSongValidations = [
         .withMessage('Album image url must not be empty.'),
 
     handleValidationErrors
-]
+];
 
 router.put('/:id', requireAuth, editSongValidations, asyncHandler(async function (req, res) {
-    const id = req.params.id
-    const originalSong = await Song.findByPk(id)
+    const id = req.params.id;
+    const originalSong = await Song.findByPk(id);
     if (!originalSong) throw new Error('Cannot find song');
-    const { songName, songLink, userId, albumImage } = req.body
+    const { songName, songLink, userId, albumImage } = req.body;
     const updatedSong = await originalSong.update(
         {
             id,
